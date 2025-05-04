@@ -102,101 +102,37 @@ export default function ContactSection() {
     instagram: "https://www.instagram.com/sathu_fit_?igsh=YjNwcGxwaGs4ZnVq&utm_source=qr"
   };
 
-  // Generate random jellyfish for background decoration
-  const jellyfish = Array.from({ length: 3 }, (_, i) => ({
+  // Generate vintage paper texture elements
+  const paperTextures = Array.from({ length: 4 }, (_, i) => ({
     id: i,
-    size: Math.random() * 60 + 40,
-    x: Math.random() * 100,
-    y: Math.random() * 60 + 20,
-    duration: Math.random() * 20 + 15,
-    delay: Math.random() * 10,
-    opacity: Math.random() * 0.2 + 0.1
+    size: Math.random() * 150 + 100,
+    x: Math.random() * 90 + 5,
+    y: Math.random() * 90 + 5,
+    opacity: Math.random() * 0.06 + 0.03,
+    rotation: Math.random() * 360
   }));
 
-  // Generate bubbles
-  const bubbles = Array.from({ length: 20 }, (_, i) => ({
+  // Generate coffee stains for texture
+  const coffeeStains = Array.from({ length: 3 }, (_, i) => ({
     id: i,
-    size: Math.random() * 12 + 3,
-    x: Math.random() * 100,
-    y: Math.random() * 100,
-    duration: Math.random() * 15 + 8,
-    delay: Math.random() * 20,
-    opacity: Math.random() * 0.4 + 0.1
+    size: Math.random() * 150 + 50,
+    x: Math.random() * 80 + 10,
+    y: Math.random() * 80 + 10,
+    opacity: Math.random() * 0.1 + 0.05
   }));
 
   return (
-    <section id="contact" className="py-24 px-6 relative overflow-hidden">
-      {/* Deep ocean background with gradients */}
-      <div className="absolute inset-0 bg-gradient-to-b from-blue-950 via-blue-950 to-teal-950 z-0" />
-      
-      {/* Animated water current effect */}
-      <div 
-        className="absolute inset-0 bg-gradient-to-tr from-cyan-900/20 via-blue-900/10 to-transparent opacity-40 z-0"
-        style={{
-          animation: "current-flow 30s linear infinite",
-          backgroundSize: "200% 200%"
-        }}
-      />
-      
-      {/* Deep sea textures */}
-      <div className="absolute inset-0 bg-water-pattern opacity-30 z-0" />
-      
-      {/* Bioluminescent jellyfish */}
-      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-        {jellyfish.map((jelly) => (
-          <div
-            key={jelly.id}
-            className="absolute"
-            style={{
-              width: `${jelly.size}px`,
-              height: `${jelly.size * 1.3}px`,
-              top: `${jelly.y}%`,
-              left: `${jelly.x}%`,
-              opacity: jelly.opacity,
-              animation: `sway ${jelly.duration}s ease-in-out ${jelly.delay}s infinite, glow-pulse ${jelly.duration / 3}s ease-in-out ${jelly.delay / 2}s infinite`
-            }}
-          >
-            <div className="w-full h-1/2 rounded-t-full bg-gradient-to-b from-teal-400/30 to-cyan-500/40 blur-sm" />
-            <div className="w-4/5 mx-auto h-1/2 relative">
-              <div className="absolute inset-x-0 -top-3 h-6 bg-cyan-400/30 blur-sm rounded-b-full" />
-              {Array.from({ length: 5 }).map((_, idx) => (
-                <div 
-                  key={idx} 
-                  className="absolute top-0 rounded-b-full bg-gradient-to-b from-cyan-300/20 to-cyan-500/5 blur-sm"
-                  style={{
-                    left: `${idx * 20 + 10}%`,
-                    width: '10%',
-                    height: '100%',
-                    animationDelay: `${idx * 0.2}s`
-                  }}
-                />
-              ))}
-            </div>
-          </div>
-        ))}
-        
-        {/* Rising bubbles */}
-        {bubbles.map((bubble) => (
-          <div
-            key={bubble.id}
-            className="absolute rounded-full"
-            style={{
-              width: `${bubble.size}px`,
-              height: `${bubble.size}px`,
-              bottom: `-5%`,
-              left: `${bubble.x}%`,
-              background: bubble.id % 4 === 0 
-                ? "radial-gradient(circle at 30% 30%, rgba(125, 211, 252, 0.4), rgba(8, 145, 178, 0.1))" 
-                : "radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.3), rgba(186, 230, 253, 0.1))",
-              boxShadow: "inset 0 0 4px rgba(255, 255, 255, 0.3)",
-              opacity: bubble.opacity,
-              animation: `bubble-rise ${bubble.duration}s linear ${bubble.delay}s infinite`
-            }}
-          />
-        ))}
+    <section id="contact" className="relative min-h-screen overflow-hidden px-6 py-24 gradient-bg">
+      {/* Background elements to match HeroSection */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 opacity-30 bg-gradient-to-b from-indigo-500/10 via-purple-500/10 to-pink-500/10" />
+        <div className="absolute inset-0" style={{ 
+          backgroundImage: 'radial-gradient(circle at center, rgba(99, 102, 241, 0.1) 0%, transparent 70%)'
+        }} />
       </div>
-      
+
       <div className="max-w-6xl mx-auto relative z-10">
+        {/* Section Header */}
         <div 
           className="text-center mb-16"
           style={{
@@ -205,12 +141,10 @@ export default function ContactSection() {
             transition: "opacity 0.8s, transform 0.8s"
           }}
         >
-          <h2 className="text-5xl font-bold mb-6 tracking-tight">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-teal-400 to-cyan-500 animate-water-text">
-              Let's Connect
-            </span>
+          <h2 className="text-5xl font-bold mb-6 tracking-tight text-white">
+            Let's <span className="gradient-text">Connect</span>
           </h2>
-          <p className="text-lg text-cyan-100 max-w-2xl mx-auto">
+          <p className="text-gray-300 text-lg max-w-2xl mx-auto">
             I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
           </p>
         </div>
@@ -218,7 +152,7 @@ export default function ContactSection() {
         <div className="grid md:grid-cols-2 gap-12 lg:gap-16">
           {/* Contact Information */}
           <div 
-            className="space-y-10"
+            className="space-y-10 modern-card p-8 rounded-2xl"
             style={{
               opacity: isVisible ? 1 : 0,
               transform: isVisible ? "translateY(0)" : "translateY(30px)",
@@ -227,22 +161,21 @@ export default function ContactSection() {
             }}
           >
             <div>
-              <h3 className="text-2xl font-semibold mb-8 relative inline-block text-cyan-100">
+              <h3 className="text-2xl font-semibold mb-8 text-white">
                 Contact Information
-                <span className="absolute -bottom-2 left-0 w-1/2 h-1 bg-gradient-to-r from-cyan-400 to-teal-500"></span>
               </h3>
             </div>
             
             <div className="space-y-8">
               <div className="flex items-center group">
-                <div className="bg-gradient-to-br from-cyan-600 to-teal-700 p-4 rounded-xl mr-5 shadow-lg shadow-cyan-900/20 group-hover:shadow-cyan-900/40 transition-all duration-300">
-                  <Mail className="h-6 w-6 text-cyan-100 group-hover:scale-110 transition-transform duration-300" />
+                <div className="glass-button p-4 rounded-lg mr-5">
+                  <Mail className="h-6 w-6 text-white group-hover:scale-110 transition-transform duration-300" />
                 </div>
                 <div>
-                  <p className="text-sm text-cyan-300 mb-1">Email</p>
+                  <p className="text-sm text-gray-400 mb-1">Email</p>
                   <a 
                     href={`mailto:${contactInfo.email}`} 
-                    className="text-cyan-100 hover:text-cyan-400 transition-colors relative overflow-hidden group-hover:underline decoration-cyan-400/30 underline-offset-4"
+                    className="text-white hover:text-gray-300 transition-colors group-hover:underline"
                   >
                     {contactInfo.email}
                   </a>
@@ -250,14 +183,14 @@ export default function ContactSection() {
               </div>
               
               <div className="flex items-center group">
-                <div className="bg-gradient-to-br from-teal-600 to-cyan-700 p-4 rounded-xl mr-5 shadow-lg shadow-teal-900/20 group-hover:shadow-teal-900/40 transition-all duration-300">
-                  <Phone className="h-6 w-6 text-cyan-100 group-hover:scale-110 transition-transform duration-300" />
+                <div className="glass-button p-4 rounded-lg mr-5">
+                  <Phone className="h-6 w-6 text-white group-hover:scale-110 transition-transform duration-300" />
                 </div>
                 <div>
-                  <p className="text-sm text-cyan-300 mb-1">Phone</p>
+                  <p className="text-sm text-gray-400 mb-1">Phone</p>
                   <a 
                     href={`tel:${contactInfo.phone}`} 
-                    className="text-cyan-100 hover:text-teal-300 transition-colors group-hover:underline decoration-teal-400/30 underline-offset-4"
+                    className="text-white hover:text-gray-300 transition-colors group-hover:underline"
                   >
                     {contactInfo.phone}
                   </a>
@@ -265,12 +198,12 @@ export default function ContactSection() {
               </div>
               
               <div className="flex items-center group">
-                <div className="bg-gradient-to-br from-blue-600 to-cyan-700 p-4 rounded-xl mr-5 shadow-lg shadow-blue-900/20 group-hover:shadow-blue-900/40 transition-all duration-300">
-                  <MapPin className="h-6 w-6 text-cyan-100 group-hover:scale-110 transition-transform duration-300" />
+                <div className="glass-button p-4 rounded-lg mr-5">
+                  <MapPin className="h-6 w-6 text-white group-hover:scale-110 transition-transform duration-300" />
                 </div>
                 <div>
-                  <p className="text-sm text-cyan-300 mb-1">Address</p>
-                  <address className="not-italic text-cyan-100 hover:text-blue-300 transition-colors">
+                  <p className="text-sm text-gray-400 mb-1">Address</p>
+                  <address className="not-italic text-white">
                     {contactInfo.address}
                   </address>
                 </div>
@@ -279,68 +212,48 @@ export default function ContactSection() {
             
             {/* Social Links */}
             <div>
-              <h3 className="text-xl font-semibold mb-6 relative inline-block text-cyan-100">
+              <h3 className="text-xl font-semibold mb-6 text-white">
                 Connect With Me
-                <span className="absolute -bottom-2 left-0 w-1/2 h-1 bg-gradient-to-r from-cyan-400 to-teal-500"></span>
               </h3>
               <div className="flex flex-wrap gap-4">
+                {/* Social Icons - Update each social icon wrapper */}
                 <a
                   href={contactInfo.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group relative"
-                  aria-label="GitHub"
+                  className="social-icon p-3 rounded-full"
                 >
-                  <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-cyan-400 to-teal-400 opacity-0 group-hover:opacity-70 blur transition duration-300" />
-                  <div className="relative bg-blue-900/50 rounded-full p-3 group-hover:bg-blue-800/70 transition duration-300">
-                    <Github className="h-5 w-5 text-cyan-100 group-hover:text-cyan-300 transition-colors duration-300" />
-                  </div>
+                  <Github className="h-5 w-5 text-white" />
                 </a>
                 <a
                   href={contactInfo.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group relative"
-                  aria-label="LinkedIn"
+                  className="social-icon p-3 rounded-full"
                 >
-                  <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-teal-400 to-cyan-400 opacity-0 group-hover:opacity-70 blur transition duration-300" />
-                  <div className="relative bg-blue-900/50 rounded-full p-3 group-hover:bg-blue-800/70 transition duration-300">
-                    <Linkedin className="h-5 w-5 text-cyan-100 group-hover:text-cyan-300 transition-colors duration-300" />
-                  </div>
+                  <Linkedin className="h-5 w-5 text-white" />
                 </a>
                 <a
                   href={contactInfo.twitter}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group relative"
-                  aria-label="Twitter"
+                  className="social-icon p-3 rounded-full"
                 >
-                  <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-cyan-400 to-blue-400 opacity-0 group-hover:opacity-70 blur transition duration-300" />
-                  <div className="relative bg-blue-900/50 rounded-full p-3 group-hover:bg-blue-800/70 transition duration-300">
-                    <Twitter className="h-5 w-5 text-cyan-100 group-hover:text-cyan-300 transition-colors duration-300" />
-                  </div>
+                  <Twitter className="h-5 w-5 text-white" />
                 </a>
                 <a
                   href={contactInfo.instagram}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group relative"
-                  aria-label="Instagram"
+                  className="social-icon p-3 rounded-full"
                 >
-                  <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-teal-400 to-purple-400 opacity-0 group-hover:opacity-70 blur transition duration-300" />
-                  <div className="relative bg-blue-900/50 rounded-full p-3 group-hover:bg-blue-800/70 transition duration-300">
-                    <Instagram className="h-5 w-5 text-cyan-100 group-hover:text-cyan-300 transition-colors duration-300" />
-                  </div>
+                  <Instagram className="h-5 w-5 text-white" />
                 </a>
                 <a
                   href={`mailto:${contactInfo.email}`}
-                  className="group relative"
-                  aria-label="Email"
+                  className="social-icon p-3 rounded-full"
                 >
-                  <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-cyan-400 to-teal-400 opacity-0 group-hover:opacity-70 blur transition duration-300" />
-                  <div className="relative bg-blue-900/50 rounded-full p-3 group-hover:bg-blue-800/70 transition duration-300">
-                    <Mail className="h-5 w-5 text-cyan-100 group-hover:text-cyan-300 transition-colors duration-300" />
-                  </div>
+                  <Mail className="h-5 w-5 text-white" />
                 </a>
               </div>
             </div>
@@ -354,159 +267,106 @@ export default function ContactSection() {
               transform: isVisible ? "translateY(0)" : "translateY(40px)",
               transition: "opacity 0.8s, transform 0.8s",
               transitionDelay: "0.3s",
-              transformStyle: "preserve-3d",
-
             }}
           >
-            <div className="bg-blue-950/40 backdrop-blur-md rounded-2xl p-8 border border-cyan-500/20 relative z-10"
+            <div className="modern-card p-8 rounded-2xl relative z-10"
               style={{
-                boxShadow: "0 0 40px rgba(6, 182, 212, 0.15), 0 0 20px rgba(8, 145, 178, 0.1) inset"
+                transform: `perspective(1000px) rotateX(${mousePosition.y * 2}deg) rotateY(${-mousePosition.x * 2}deg)`
               }}
             >
-              {/* Ripple effect on hover */}
-              <div className="absolute inset-0 rounded-xl overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-tr from-cyan-500/5 to-blue-400/10 opacity-30" />
-                <div 
-                  className="absolute inset-0 rounded-xl"
-                  style={{
-                    background: `radial-gradient(circle at ${50 + mousePosition.x * 30}% ${50 + mousePosition.y * 30}%, rgba(8, 145, 178, 0.2), transparent 70%)`
-                  }}
-                />
-              </div>
-              
-              <h3 className="text-2xl font-semibold mb-6 relative inline-block text-cyan-100 z-10">
+              <h3 className="text-2xl font-semibold mb-6 text-white">
                 Send Me a Message
-                <span className="absolute -bottom-2 left-0 w-1/2 h-1 bg-gradient-to-r from-cyan-400 to-teal-500"></span>
               </h3>
               
               {formStatus.submitted ? (
                 <div 
-                  className={`p-6 rounded-xl ${
+                  className={`p-6 glass-button ${
                     formStatus.error 
-                      ? 'bg-gradient-to-br from-red-900/50 to-red-950/50 border border-red-700/30' 
-                      : 'bg-gradient-to-br from-teal-900/50 to-teal-950/50 border border-teal-700/30'
+                      ? 'border-red-500/20' 
+                      : 'border-green-500/20'
                   }`}
-                  style={{
-                    opacity: 0,
-                    animation: "fadeIn 0.3s forwards",
-                    boxShadow: formStatus.error 
-                      ? "0 0 20px rgba(220, 38, 38, 0.1) inset" 
-                      : "0 0 20px rgba(20, 184, 166, 0.1) inset"
-                  }}
                 >
-                  <p className="text-center font-medium text-cyan-100">
+                  <p className="text-center font-medium text-white">
                     {formStatus.message}
                   </p>
                   {formStatus.error && (
                     <button 
                       onClick={() => setFormStatus({ submitted: false, error: false, message: "" })}
-                      className="mt-4 mx-auto block text-sm px-4 py-2 bg-red-800/50 hover:bg-red-700/50 rounded-lg transition-colors"
+                      className="mt-4 mx-auto block text-sm px-4 py-2 glass-button hover:bg-white/20"
                     >
                       Try again
                     </button>
                   )}
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  {/* Form inputs - Update each input field */}
                   <div>
-                    <label htmlFor="name" className="text-sm text-cyan-300 block mb-2 font-medium">
+                    <label className="text-sm text-gray-300 block mb-2">
                       Your Name
                     </label>
-                    <div className="relative">
-                      <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        required
-                        className="w-full px-4 py-3 pl-4 rounded-xl bg-blue-900/30 text-cyan-100 placeholder-cyan-300/50 border border-cyan-600/30 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 focus:border-cyan-500 transition-all duration-300"
-                        placeholder="Name"
-                      />
-                    </div>
+                    <input
+                      type="text"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      required
+                      className="w-full px-4 py-3 glass-button text-white placeholder-gray-400 focus:ring-2 focus:ring-indigo-500"
+                      placeholder="Name"
+                    />
                   </div>
-                  
                   <div>
-                    <label htmlFor="email" className="text-sm text-cyan-300 block mb-2 font-medium">
+                    <label className="text-sm text-gray-300 block mb-2">
                       Your Email
                     </label>
-                    <div className="relative">
-                      <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        required
-                        className="w-full px-4 py-3 pl-4 rounded-xl bg-blue-900/30 text-cyan-100 placeholder-cyan-300/50 border border-cyan-600/30 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 focus:border-cyan-500 transition-all duration-300"
-                        placeholder="Email"
-                      />
-                    </div>
+                    <input
+                      type="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      required
+                      className="w-full px-4 py-3 glass-button text-white placeholder-gray-400 focus:ring-2 focus:ring-indigo-500"
+                      placeholder="Email"
+                    />
                   </div>
-                  
                   <div>
-                    <label htmlFor="subject" className="text-sm text-cyan-300 block mb-2 font-medium">
+                    <label className="text-sm text-gray-300 block mb-2">
                       Subject
                     </label>
-                    <div className="relative">
-                      <input
-                        type="text"
-                        id="subject"
-                        name="subject"
-                        value={formData.subject}
-                        onChange={handleChange}
-                        required
-                        className="w-full px-4 py-3 pl-4 rounded-xl bg-blue-900/30 text-cyan-100 placeholder-cyan-300/50 border border-cyan-600/30 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 focus:border-cyan-500 transition-all duration-300"
-                        placeholder="Subject"
-                      />
-                    </div>
+                    <input
+                      type="text"
+                      name="subject"
+                      value={formData.subject}
+                      onChange={handleChange}
+                      required
+                      className="w-full px-4 py-3 glass-button text-white placeholder-gray-400 focus:ring-2 focus:ring-indigo-500"
+                      placeholder="Subject"
+                    />
                   </div>
-                  
                   <div>
-                    <label htmlFor="message" className="text-sm text-cyan-300 block mb-2 font-medium">
+                    <label className="text-sm text-gray-300 block mb-2">
                       Your Message
                     </label>
                     <textarea
-                      id="message"
                       name="message"
                       value={formData.message}
                       onChange={handleChange}
                       rows={5}
                       required
-                      className="w-full px-4 py-3 rounded-xl bg-blue-900/30 text-cyan-100 placeholder-cyan-300/50 border border-cyan-600/30 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 focus:border-cyan-500 transition-all duration-300 resize-none"
+                      className="w-full px-4 py-3 glass-button text-white placeholder-gray-400 focus:ring-2 focus:ring-indigo-500 resize-none"
                       placeholder="I'd like to discuss a potential project..."
                     ></textarea>
                   </div>
                   
                   <button
                     type="submit"
-                    className="w-full bg-gradient-to-r from-cyan-600 to-teal-600 hover:from-cyan-500 hover:to-teal-500 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 shadow-lg shadow-cyan-900/30 hover:shadow-cyan-900/50 relative overflow-hidden group"
-                    style={{
-                      transform: "translateY(0)",
-                      transition: "transform 0.2s, shadow 0.3s"
-                    }}
-                    onMouseOver={(e) => {
-                      e.currentTarget.style.transform = "translateY(-2px)";
-                    }}
-                    onMouseOut={(e) => {
-                      e.currentTarget.style.transform = "translateY(0)";
-                    }}
+                    className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-3 px-6 rounded-lg transition-all duration-300"
                   >
-                    <span className="relative z-10">Send Message</span>
-                    <span className="absolute inset-0 bg-gradient-to-r from-cyan-500/0 via-white/10 to-cyan-500/0 transform translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></span>
+                    Send Message
                   </button>
                 </form>
               )}
             </div>
-            
-            {/* Subtle glow effect */}
-            <div 
-              className="absolute -inset-4 rounded-3xl blur-xl opacity-30 z-0"
-              style={{ 
-                background: "radial-gradient(circle at center, rgba(6, 182, 212, 0.15), transparent 70%)",
-                animation: "glow-pulse 4s infinite ease-in-out"
-              }}
-            />
           </div>
         </div>
       </div>

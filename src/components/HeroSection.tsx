@@ -1,8 +1,8 @@
 import { Button } from "@/components/ui/button";
-import { useState, useEffect } from "react";
-import { Github, Linkedin, Mail, Anchor } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
+import { Github, Linkedin, Mail, ChevronDown } from "lucide-react";
 
-// Custom hook for mouse parallax effect with proper TypeScript types
+// Custom hook for subtle movement effect with proper TypeScript types
 const useMouseParallax = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   
@@ -30,89 +30,102 @@ interface HeroSectionProps {
 const HeroSection = ({ scrollToProjects, scrollToContact, scrollToHome }: HeroSectionProps) => {
   const { x, y } = useMouseParallax();
   const [isLoaded, setIsLoaded] = useState(false);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const animationRef = useRef<number>(0);
+  
+  // Neo-Brutalist shapes for animation
+  interface Shape {
+    x: number;
+    y: number;
+    size: number;
+    rotation: number;
+    rotationSpeed: number;
+    color: string;
+    shape: 'square' | 'circle' | 'triangle';
+    opacity: number;
+    speedX: number;
+    speedY: number;
+  }
+  
+  const shapesRef = useRef<Shape[]>([]);
   
   // Add global styles using useEffect
   useEffect(() => {
-    // Create a style element
     const styleEl = document.createElement("style");
-    // Add the CSS content
     styleEl.textContent = `
-      @keyframes sway {
-        0% { transform: translateX(0px) translateY(0px) rotate(0deg); }
-        33% { transform: translateX(10px) translateY(-10px) rotate(2deg); }
-        66% { transform: translateX(-5px) translateY(5px) rotate(-1deg); }
-        100% { transform: translateX(0px) translateY(0px) rotate(0deg); }
+      @keyframes gradientShift {
+        0% { background-position: 0% 50% }
+        50% { background-position: 100% 50% }
+        100% { background-position: 0% 50% }
       }
       
-      @keyframes bubble-rise {
-        0% { transform: translateY(20px); opacity: 0; }
-        20% { opacity: 0.8; }
-        80% { opacity: 0.6; }
-        100% { transform: translateY(-100px); opacity: 0; }
+      @keyframes floatUp {
+        0%, 100% { transform: translateY(0) }
+        50% { transform: translateY(-10px) }
       }
       
-      @keyframes glow-pulse {
-        0% { filter: brightness(0.8) saturate(0.8); }
-        50% { filter: brightness(1.2) saturate(1.2); }
-        100% { filter: brightness(0.8) saturate(0.8); }
+      @keyframes shine {
+        0% { opacity: 0.5; }
+        50% { opacity: 1; }
+        100% { opacity: 0.5; }
       }
       
-      @keyframes current-flow {
-        0% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-        100% { background-position: 0% 50%; }
+      .modern-card {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
       }
       
-      @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(10px); }
-        to { opacity: 1; transform: translateY(0); }
+      .modern-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
       }
       
-      @keyframes ripple {
-        0% { transform: scale(0.8); opacity: 1; }
-        100% { transform: scale(2); opacity: 0; }
+      .gradient-text {
+        background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
       }
       
-      .animate-water-text {
-        background-size: 200% auto;
-        animation: current-flow 8s ease infinite;
+      .glass-button {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        transition: all 0.3s ease;
       }
       
-      .bg-water-pattern {
-        background-image: 
-          radial-gradient(circle at 50% 50%, rgba(4, 78, 129, 0.1) 10%, transparent 20%),
-          radial-gradient(circle at 80% 20%, rgba(0, 71, 171, 0.1) 10%, transparent 30%);
-        background-size: 60px 60px;
+      .glass-button:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: translateY(-2px);
       }
       
-      .shadow-aqua {
-        box-shadow: 0 0 15px rgba(0, 222, 255, 0.5);
+      .social-icon {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        transition: all 0.3s ease;
       }
       
-      .shadow-deep {
-        box-shadow: 0 0 15px rgba(0, 98, 138, 0.3);
+      .social-icon:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: translateY(-3px);
       }
       
-      .typing-text {
-        overflow: hidden;
-        white-space: nowrap;
-        width: fit-content;
-        margin: 0 auto;
-        animation: typing 3.5s steps(60) 0.5s 1 normal both;
-      }
-      
-      @keyframes typing {
-        from { width: 0; }
-        to { width: 100%; }
+      .gradient-bg {
+        background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        animation: gradientShift 15s ease infinite;
+        background-size: 200% 200%;
       }
     `;
     
-    // Append the style element to the head
     document.head.appendChild(styleEl);
-    
-    // Clean up on component unmount
+
+    // Return a cleanup function that removes the style element
     return () => {
-      document.head.removeChild(styleEl);
+      if (styleEl && document.head.contains(styleEl)) {
+        document.head.removeChild(styleEl);
+      }
     };
   }, []);
   
@@ -122,197 +135,195 @@ const HeroSection = ({ scrollToProjects, scrollToContact, scrollToHome }: HeroSe
     return () => clearTimeout(timer);
   }, []);
 
-  // Generate random jellyfish
-  const jellyfish = Array.from({ length: 6 }, (_, i) => ({
-    id: i,
-    size: Math.random() * 80 + 40,
-    x: Math.random() * 100,
-    y: Math.random() * 60 + 20,
-    duration: Math.random() * 20 + 15,
-    delay: Math.random() * 10,
-    opacity: Math.random() * 0.3 + 0.1
-  }));
+  // Create animated shapes for Neo-Brutalist background
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
 
-  // Generate bubbles
-  const bubbles = Array.from({ length: 30 }, (_, i) => ({
-    id: i,
-    size: Math.random() * 12 + 3,
-    x: Math.random() * 100,
-    y: Math.random() * 100,
-    duration: Math.random() * 15 + 8,
-    delay: Math.random() * 20,
-    opacity: Math.random() * 0.4 + 0.1
-  }));
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    // Set canvas to full screen
+    const handleResize = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    };
+
+    window.addEventListener('resize', handleResize);
+    handleResize();
+
+    // Create geometric shapes
+    const shapeCount = Math.min(window.innerWidth / 100, 15); // Fewer shapes for neo-brutalist style
+    shapesRef.current = Array.from({ length: shapeCount }, () => createShape(canvas.width, canvas.height));
+
+    // Animation loop
+    const animate = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      // Update and draw shapes
+      shapesRef.current.forEach((shape) => {
+        updateShape(shape, canvas);
+        drawShape(shape, ctx);
+      });
+      
+      animationRef.current = requestAnimationFrame(animate);
+    };
+
+    animate();
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      cancelAnimationFrame(animationRef.current);
+    };
+  }, []);
+
+  const createShape = (canvasWidth: number, canvasHeight: number): Shape => {
+    const shapes = ['square', 'circle', 'triangle'] as const;
+    const colors = ['#3b82f6', '#000000', '#ef4444', '#a3e635'];
+    
+    return {
+      x: Math.random() * canvasWidth,
+      y: Math.random() * canvasHeight,
+      size: Math.random() * 40 + 10, // Bold, chunky shapes
+      rotation: Math.random() * 360,
+      rotationSpeed: (Math.random() - 0.5) * 0.5,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      shape: shapes[Math.floor(Math.random() * shapes.length)],
+      opacity: Math.random() * 0.15 + 0.05, // Subtle background elements
+      speedX: (Math.random() - 0.5) * 0.3,
+      speedY: (Math.random() - 0.5) * 0.3
+    };
+  };
+
+  const updateShape = (shape: Shape, canvas: HTMLCanvasElement) => {
+    // Move shape
+    shape.x += shape.speedX;
+    shape.y += shape.speedY;
+    
+    // Rotate shape
+    shape.rotation += shape.rotationSpeed;
+    
+    // Bounce off edges
+    if (shape.x < 0 || shape.x > canvas.width) {
+      shape.speedX *= -1;
+    }
+    
+    if (shape.y < 0 || shape.y > canvas.height) {
+      shape.speedY *= -1;
+    }
+  };
+
+  const drawShape = (shape: Shape, ctx: CanvasRenderingContext2D) => {
+    ctx.save();
+    ctx.translate(shape.x, shape.y);
+    ctx.rotate((shape.rotation * Math.PI) / 180);
+    ctx.fillStyle = shape.color;
+    ctx.globalAlpha = shape.opacity;
+    
+    switch (shape.shape) {
+      case 'square':
+        ctx.fillRect(-shape.size / 2, -shape.size / 2, shape.size, shape.size);
+        break;
+      case 'circle':
+        ctx.beginPath();
+        ctx.arc(0, 0, shape.size / 2, 0, Math.PI * 2);
+        ctx.fill();
+        break;
+      case 'triangle':
+        ctx.beginPath();
+        ctx.moveTo(0, -shape.size / 2);
+        ctx.lineTo(shape.size / 2, shape.size / 2);
+        ctx.lineTo(-shape.size / 2, shape.size / 2);
+        ctx.closePath();
+        ctx.fill();
+        break;
+    }
+    
+    ctx.restore();
+  };
 
   return (
-    <section className="relative min-h-screen overflow-hidden px-6 flex flex-col items-center justify-center text-center">
-      {/* Deep ocean background with gradients */}
-      <div className="absolute inset-0 bg-gradient-to-b from-blue-900 via-blue-950 to-teal-950 z-0" />
-      
-      {/* Animated water current effect */}
-      <div 
-        className="absolute inset-0 bg-gradient-to-tr from-cyan-900/20 via-blue-900/10 to-transparent opacity-40 z-0"
-        style={{
-          animation: "current-flow 30s linear infinite",
-          backgroundSize: "200% 200%"
-        }}
-      />
-      
-      {/* Deep sea textures */}
-      <div className="absolute inset-0 bg-water-pattern opacity-30 z-0" />
-      
-      {/* Bioluminescent jellyfish */}
-      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-        {jellyfish.map((jelly) => (
-          <div
-            key={jelly.id}
-            className="absolute"
-            style={{
-              width: `${jelly.size}px`,
-              height: `${jelly.size * 1.3}px`,
-              top: `${jelly.y}%`,
-              left: `${jelly.x}%`,
-              opacity: jelly.opacity,
-              animation: `sway ${jelly.duration}s ease-in-out ${jelly.delay}s infinite, glow-pulse ${jelly.duration / 3}s ease-in-out ${jelly.delay / 2}s infinite`
-            }}
-          >
-            <div className="w-full h-1/2 rounded-t-full bg-gradient-to-b from-teal-400/30 to-cyan-500/40 blur-sm" />
-            <div className="w-4/5 mx-auto h-1/2 relative">
-              <div className="absolute inset-x-0 -top-3 h-6 bg-cyan-400/30 blur-sm rounded-b-full" />
-              {Array.from({ length: 5 }).map((_, idx) => (
-                <div 
-                  key={idx} 
-                  className="absolute top-0 rounded-b-full bg-gradient-to-b from-cyan-300/20 to-cyan-500/5 blur-sm"
-                  style={{
-                    left: `${idx * 20 + 10}%`,
-                    width: '10%',
-                    height: '100%',
-                    animationDelay: `${idx * 0.2}s`
-                  }}
-                />
-              ))}
-            </div>
-          </div>
-        ))}
-        
-        {/* Rising bubbles */}
-        {bubbles.map((bubble) => (
-          <div
-            key={bubble.id}
-            className="absolute rounded-full"
-            style={{
-              width: `${bubble.size}px`,
-              height: `${bubble.size}px`,
-              bottom: `-5%`,
-              left: `${bubble.x}%`,
-              background: bubble.id % 4 === 0 
-                ? "radial-gradient(circle at 30% 30%, rgba(125, 211, 252, 0.4), rgba(8, 145, 178, 0.1))" 
-                : "radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.3), rgba(186, 230, 253, 0.1))",
-              boxShadow: "inset 0 0 4px rgba(255, 255, 255, 0.3)",
-              opacity: bubble.opacity,
-              animation: `bubble-rise ${bubble.duration}s linear ${bubble.delay}s infinite`
-            }}
-          />
-        ))}
+    <section className="relative min-h-screen overflow-hidden px-6 py-10 flex flex-col items-center justify-center text-center gradient-bg">
+      {/* Animated background elements */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 opacity-30 bg-gradient-to-b from-indigo-500/10 via-purple-500/10 to-pink-500/10" />
+        <div className="absolute inset-0" style={{ 
+          backgroundImage: 'radial-gradient(circle at center, rgba(99, 102, 241, 0.1) 0%, transparent 70%)'
+        }} />
       </div>
       
-      {/* Content card with aqua glass effect */}
+      {/* Canvas for animated brutalist shapes */}
+      <canvas 
+        ref={canvasRef}
+        className="absolute inset-0 z-0 pointer-events-none opacity-30"
+      />
+
+      {/* Main content */}
       <div 
-        className={`relative z-10 bg-blue-950/40 backdrop-blur-md p-10 rounded-xl border border-cyan-500/20 max-w-2xl w-full transition-all duration-1000 ${
+        className={`relative z-10 p-12 max-w-2xl w-full transition-all duration-500 modern-card rounded-2xl ${
           isLoaded ? "opacity-100 transform-none" : "opacity-0 translate-y-8"
         }`}
-        style={{
-          boxShadow: "0 0 40px rgba(6, 182, 212, 0.15), 0 0 20px rgba(8, 145, 178, 0.1) inset",
-          transform: `perspective(1000px) rotateX(${y * 5}deg) rotateY(${-x * 5}deg)`
-        }}
       >
-        {/* Ripple effect on hover */}
-        <div className="absolute inset-0 rounded-xl overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-tr from-cyan-500/5 to-blue-400/10 opacity-30" />
-          <div 
-            className="absolute inset-0 rounded-xl"
-            style={{
-              background: `radial-gradient(circle at ${50 + x * 30}% ${50 + y * 30}%, rgba(8, 145, 178, 0.2), transparent 70%)`
-            }}
-          />
-        </div>
-        
-        <div className="flex flex-col items-center relative z-10">
-          {/* Main heading with water effect */}
-          <h1 className="text-5xl md:text-6xl font-bold text-white mb-4 tracking-tight relative">
+        <div className="flex flex-col items-center">
+          <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 tracking-tight">
             Hello, I'm{" "}
-            <span className="relative inline-block">
-              <span className="relative z-10 text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-teal-400 to-cyan-500 animate-water-text">
-                Sathush
-              </span>
-              <span className="absolute -bottom-1 left-0 w-full h-1 bg-gradient-to-r from-cyan-300 via-teal-400 to-cyan-500 rounded opacity-80" />
-            </span>
+            <span className="gradient-text">Sathush</span>
           </h1>
           
-          {/* Subtitle with animated fade in */}
-          <p className="text-cyan-100 text-lg max-w-xl mx-auto" style={{ animation: "fadeIn 1s ease forwards 0.5s", opacity: 0 }}>
-            A passionate software engineer from SLIIT, building immersive web experiences and impactful projects.
+          <p className="text-gray-300 text-lg max-w-xl mx-auto leading-relaxed mb-8">
+            A passionate software engineer from SLIIT, crafting elegant solutions and building immersive digital experiences.
           </p>
 
-          {/* Buttons with ocean-themed hover effects */}
-          <div className="flex gap-4 mt-8 justify-center">
+          <div className="flex flex-wrap gap-6 justify-center mb-10">
             <Button 
               onClick={scrollToProjects}
-              className="bg-gradient-to-r from-cyan-600 to-teal-500 hover:from-cyan-500 hover:to-teal-400 text-white font-medium py-2 px-6 rounded-lg transition-all duration-300 hover:shadow-aqua transform hover:-translate-y-1"
+              className="bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-3 rounded-lg font-medium transition-all"
             >
-              <span>View Projects</span>
+              View Projects
             </Button>
 
             <Button 
               onClick={scrollToContact}
-              variant="outline"
-              className="border border-cyan-400/30 bg-blue-900/30 text-cyan-100 hover:bg-blue-800/40 font-medium py-2 px-6 rounded-lg transition-all duration-300 hover:shadow-deep transform hover:-translate-y-1"
+              className="glass-button text-white px-8 py-3 rounded-lg font-medium flex items-center gap-2"
             >
-              <Mail size={16} className="mr-2" />
+              <Mail size={18} />
               <span>Contact Me</span>
             </Button>
           </div>
           
-          {/* Social icons with underwater glow effects */}
-          <div className="flex gap-8 mt-8 justify-center">
+          <div className="flex gap-6">
             <a 
               href="https://github.com/Sathufit" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="group relative"
+              className="social-icon p-3 rounded-full"
             >
-              <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-cyan-400 to-teal-400 opacity-0 group-hover:opacity-70 blur transition duration-300" />
-              <div className="relative bg-blue-900/50 rounded-full p-2 group-hover:bg-blue-800/70 transition duration-300">
-                <Github size={24} className="text-cyan-100 group-hover:text-cyan-300 transition-colors duration-300" />
-              </div>
+              <Github size={24} className="text-white" />
             </a>
             
             <a 
               href="https://www.linkedin.com/in/sathush-nanayakkara-611b65192/" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="group relative"
+              className="social-icon p-3 rounded-full"
             >
-              <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-teal-400 to-cyan-400 opacity-0 group-hover:opacity-70 blur transition duration-300" />
-              <div className="relative bg-blue-900/50 rounded-full p-2 group-hover:bg-blue-800/70 transition duration-300">
-                <Linkedin size={24} className="text-cyan-100 group-hover:text-cyan-300 transition-colors duration-300" />
-              </div>
+              <Linkedin size={24} className="text-white" />
             </a>
           </div>
         </div>
       </div>
       
-      {/* Enhanced scroll indicator with anchor icon */}
+      {/* Scroll indicator */}
       <div 
-        className="absolute bottom-10 text-cyan-200 flex flex-col items-center gap-2"
+        className="absolute bottom-16 text-white flex flex-col items-center gap-3"
         style={{
-          animation: "fadeIn 2s ease forwards",
-          animationDelay: "1.5s",
-          opacity: 0
+          animation: "floatUp 2s ease-in-out infinite"
         }}
       >
-        <span className="text-sm font-light tracking-widest">DIVE IN</span>
-        <Anchor size={20} className="animate-bounce" />
+        <span className="text-xs font-medium tracking-wider opacity-75">Scroll Down</span>
+        <div className="glass-button p-2 rounded-full">
+          <ChevronDown size={20} />
+        </div>
       </div>
     </section>
   );
