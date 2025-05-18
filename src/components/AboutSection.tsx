@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useRef, useState } from "react";
-import profileImg from "@/assets/profile.png";
+import profileImg from "@/assets/sathush.png";
 import {
   Code,
   User,
