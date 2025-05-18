@@ -118,7 +118,7 @@ const projects: Project[] = [
     title: "FrontyardCricket",
     description: "A full-stack MERN application to add, update, and delete cricket stats like runs and wickets, while calculating batting and bowling averages to track player performance over time.",
     tech: ["MongoDB", "Express.js", "React.js", "Node.js"],
-    url: "https://frontendcrickweb.onrender.com/",
+    url: "https://frontyardcricket.onrender.com/",
     link: "https://github.com/Sathufit/frontendCrickweb",  
     featured: true,
     image: "/placeholder/cric.png" 

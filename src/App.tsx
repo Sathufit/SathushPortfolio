@@ -3,29 +3,33 @@ import HeroSection from "./components/HeroSection";
 import AboutSection from "./components/AboutSection";
 import ProjectsSection from "./components/ProjectsSection";
 import ContactSection from "./components/ContactSection";
+import { useNavigate } from "react-router-dom";
 
 function App() {
   const projectsRef = useRef<HTMLDivElement>(null);
   const contactRef = useRef<HTMLDivElement>(null);
 
+  // ✅ React Router navigation
+  const navigate = useNavigate();
+
   // 👉 Scroll handlers
   const scrollToProjects = () => {
     if (projectsRef.current) {
       projectsRef.current.scrollIntoView({ behavior: "smooth" });
-      window.history.pushState(null, "", "/projects");
+      navigate("/projects");
     }
   };
 
   const scrollToContact = () => {
     if (contactRef.current) {
       contactRef.current.scrollIntoView({ behavior: "smooth" });
-      window.history.pushState(null, "", "/contact");
+      navigate("/contact");
     }
   };
 
   const scrollToHome = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
-    window.history.pushState(null, "", "/home");
+    navigate("/home");
   };
 
   // 🌀 Track scroll position to update path
@@ -36,17 +40,17 @@ function App() {
       const contactTop = contactRef.current?.offsetTop || 0;
 
       if (scrollY >= contactTop - 200) {
-        window.history.replaceState(null, "", "/contact");
+        navigate("/contact", { replace: true });
       } else if (scrollY >= projectsTop - 200) {
-        window.history.replaceState(null, "", "/projects");
+        navigate("/projects", { replace: true });
       } else {
-        window.history.replaceState(null, "", "/home");
+        navigate("/home", { replace: true });
       }
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [navigate]);
 
   return (
     <main className="bg-background text-text scroll-smooth">
