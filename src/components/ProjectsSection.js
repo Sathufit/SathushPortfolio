@@ -44,6 +44,15 @@ const projects = [
         link: "https://github.com/Sathufit/fia-minerals",
         featured: true,
         image: "/placeholder/minerals.png",
+    },
+    {
+        title: "VoteSphere voting System",
+        description: "A fully working voting system using Html and php and MySQL.",
+        tech: ["PHP", "MySQL", "HTML", "CSS"],
+        url: "https://votesphere.infinityfreeapp.com/",
+        link: "https://github.com/Sathufit/VoteSphere-voting-system",
+        featured: true,
+        image: "/placeholder/voteSphere.png",
     }
 ];
 const ProjectsSection = () => {
