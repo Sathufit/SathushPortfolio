@@ -156,12 +156,12 @@ export default function AboutSection() {
 
   const experience = [
     {
-      role: "Media Handler",
+      role: "Social Media and Technical Manager",
       organization: "Sri Lanka Schools Badminton Association",
       period: "2022-2024"
     },
     {
-      role: "Social Media Handler & Live Production",
+      role: "Social Media & Live Production",
       organization: "RichmondLive",
       period: "2019-Present"
     }
@@ -250,22 +250,16 @@ export default function AboutSection() {
             
             {/* Update button styles */}
             <motion.div className="flex flex-wrap gap-3" variants={itemVariants}>
-              <MotionLink
-                to="/contact"
-                whileHover={{ scale: 1.05 }}
-                className="glass-button text-white px-8 py-3 rounded-lg font-medium flex items-center gap-2"
-              >
-                <span>Contact Me</span>
-                <ChevronRight size={18} />
-              </MotionLink>
-              <MotionLink
-                to="/resume"
+              <motion.a
+                href="/cv.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
                 whileHover={{ scale: 1.05 }}
                 className="glass-button text-white px-8 py-3 rounded-lg font-medium flex items-center gap-2"
               >
                 <span>View Resume</span>
                 <ChevronDown size={18} />
-              </MotionLink>
+              </motion.a>
             </motion.div>
           </motion.div>
         </div>
