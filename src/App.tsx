@@ -15,7 +15,7 @@ function App() {
     const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
     const startPosition = window.pageYOffset;
     const distance = elementPosition - startPosition;
-    const duration = 6000; // Increased to 6 seconds for very slow scroll
+    const duration = 3000; // Try 3000ms for a natural feel
     let start: number | null = null;
 
     // Smooth easing function
@@ -30,12 +30,7 @@ function App() {
       const timeElapsed = currentTime - start;
       const progress = Math.min(timeElapsed / duration, 1);
 
-      const currentPosition = startPosition + (distance * easeInOutCubic(progress));
-      
-      window.scrollTo({
-        top: currentPosition,
-        behavior: 'auto'
-      });
+      window.scrollTo(0, startPosition + distance * easeInOutCubic(progress));
 
       if (progress < 1) {
         requestAnimationFrame(animation);

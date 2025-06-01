@@ -242,28 +242,50 @@ const HeroSection = ({ scrollToProjects, scrollToContact, scrollToHome }: HeroSe
     ctx.restore();
   };
 
-  // Custom smooth scroll function
-  const smoothScrollToElement = (element: HTMLElement, duration = 1000, yOffset = -50) => {
+  // Clean, smooth scroll function
+  const smoothScrollToElement = (
+    element: HTMLElement,
+    duration = 3000, // Increased duration
+    yOffset = -50,
+    onDone?: () => void
+  ) => {
     const elementPosition = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
     const startPosition = window.pageYOffset;
     const distance = elementPosition - startPosition;
     let start: number | null = null;
+    let previousTimestamp: number | null = null;
 
-    // Gentler cubic easing
-    const easeInOutCubic = (t: number) =>
-      t < 0.5
-        ? 4 * t * t * t
-        : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    // Smoother easing function
+    const easeOutCubic = (t: number): number => {
+      return 1 - Math.pow(1 - t, 3);
+    };
 
     const animation = (currentTime: number) => {
-      if (start === null) start = currentTime;
-      const timeElapsed = currentTime - start;
-      const progress = Math.min(timeElapsed / duration, 1);
+      if (start === null) {
+        start = currentTime;
+      }
 
-      window.scrollTo(0, startPosition + distance * easeInOutCubic(progress));
+      const elapsed = currentTime - start;
+      const progress = Math.min(elapsed / duration, 1);
+
+      // Only update scroll if we've moved in time
+      if (!previousTimestamp || currentTime - previousTimestamp > 16) {
+        window.scrollTo({
+          top: startPosition + distance * easeOutCubic(progress),
+          behavior: 'auto' // Use 'auto' instead of 'smooth' for better control
+        });
+        previousTimestamp = currentTime;
+      }
 
       if (progress < 1) {
         requestAnimationFrame(animation);
+      } else if (onDone) {
+        // Ensure we land exactly on the target
+        window.scrollTo({
+          top: elementPosition,
+          behavior: 'auto'
+        });
+        onDone();
       }
     };
 
@@ -308,10 +330,12 @@ const HeroSection = ({ scrollToProjects, scrollToContact, scrollToHome }: HeroSe
                 e.preventDefault();
                 const element = document.getElementById('projects');
                 if (element) {
-                  smoothScrollToElement(element, 2000, -50); // 4 seconds
+                  // Delay the route update slightly
                   setTimeout(() => {
-                    scrollToProjects();
-                  }, 4100);
+                    smoothScrollToElement(element, 3000, -50, () => {
+                      requestAnimationFrame(scrollToProjects);
+                    });
+                  }, 50);
                 }
               }}
               className="bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-3 rounded-lg font-medium transition-all"
@@ -324,10 +348,11 @@ const HeroSection = ({ scrollToProjects, scrollToContact, scrollToHome }: HeroSe
                 e.preventDefault();
                 const element = document.getElementById('contact');
                 if (element) {
-                  smoothScrollToElement(element, 2000, -50); // 4 seconds
                   setTimeout(() => {
-                    scrollToContact();
-                  }, 4100);
+                    smoothScrollToElement(element, 3000, -50, () => {
+                      requestAnimationFrame(scrollToContact);
+                    });
+                  }, 50);
                 }
               }}
               className="glass-button text-white px-8 py-3 rounded-lg font-medium flex items-center gap-2"
