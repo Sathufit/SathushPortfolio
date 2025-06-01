@@ -206,8 +206,41 @@ const ProjectsSection: React.FC = () => {
 
   const { x, y } = useMouseParallax();
 
+  const scrollToSection = (element: HTMLElement | null) => {
+    if (!element) return;
+    
+    const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+    const startPosition = window.pageYOffset;
+    const distance = elementPosition - startPosition;
+    const duration = 1500; // Increase duration for slower scroll
+    let start: number | null = null;
+
+    const ease = (t: number) => {
+      return t < 0.5 
+        ? 4 * t * t * t 
+        : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1; // Cubic easing
+    };
+
+    const animation = (currentTime: number) => {
+      if (start === null) start = currentTime;
+      const timeElapsed = currentTime - start;
+      const progress = Math.min(timeElapsed / duration, 1);
+      
+      window.scrollTo(0, startPosition + (distance * ease(progress)));
+
+      if (timeElapsed < duration) {
+        requestAnimationFrame(animation);
+      }
+    };
+
+    requestAnimationFrame(animation);
+  };
+
   return (
-    <section id="projects" className="relative min-h-screen py-24 px-6 overflow-hidden gradient-bg">
+    <section 
+      id="projects" 
+      className="relative min-h-screen py-24 px-6 overflow-hidden gradient-bg smooth-scroll"
+    >
       {/* Background elements */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 opacity-30 bg-gradient-to-b from-indigo-500/10 via-purple-500/10 to-pink-500/10" />

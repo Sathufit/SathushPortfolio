@@ -9,22 +9,59 @@ function App() {
   const contactRef = useRef<HTMLDivElement>(null);
 
   // 👉 Scroll handlers
+  const scrollToSection = (element: HTMLElement | null) => {
+    if (!element) return;
+
+    const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+    const startPosition = window.pageYOffset;
+    const distance = elementPosition - startPosition;
+    const duration = 6000; // Increased to 6 seconds for very slow scroll
+    let start: number | null = null;
+
+    // Smooth easing function
+    const easeInOutCubic = (t: number): number => {
+      return t < 0.5 
+        ? 4 * t * t * t 
+        : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    };
+
+    const animation = (currentTime: number) => {
+      if (start === null) start = currentTime;
+      const timeElapsed = currentTime - start;
+      const progress = Math.min(timeElapsed / duration, 1);
+
+      const currentPosition = startPosition + (distance * easeInOutCubic(progress));
+      
+      window.scrollTo({
+        top: currentPosition,
+        behavior: 'auto'
+      });
+
+      if (progress < 1) {
+        requestAnimationFrame(animation);
+      }
+    };
+
+    requestAnimationFrame(animation);
+  };
+
+  // Update the scroll handlers
   const scrollToProjects = () => {
     if (projectsRef.current) {
-      projectsRef.current.scrollIntoView({ behavior: "smooth" });
+      scrollToSection(projectsRef.current);
       window.history.pushState(null, "", "/projects");
     }
   };
 
   const scrollToContact = () => {
     if (contactRef.current) {
-      contactRef.current.scrollIntoView({ behavior: "smooth" });
+      scrollToSection(contactRef.current);
       window.history.pushState(null, "", "/contact");
     }
   };
 
   const scrollToHome = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    scrollToSection(document.body);
     window.history.pushState(null, "", "/home");
   };
 
@@ -49,7 +86,7 @@ function App() {
   }, []);
 
   return (
-    <main className="bg-background text-text scroll-smooth">
+    <main className="bg-background text-text smooth-scroll">
       <HeroSection
         scrollToProjects={scrollToProjects}
         scrollToContact={scrollToContact}

@@ -242,6 +242,34 @@ const HeroSection = ({ scrollToProjects, scrollToContact, scrollToHome }: HeroSe
     ctx.restore();
   };
 
+  // Custom smooth scroll function
+  const smoothScrollToElement = (element: HTMLElement, duration = 1000, yOffset = -50) => {
+    const elementPosition = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+    const startPosition = window.pageYOffset;
+    const distance = elementPosition - startPosition;
+    let start: number | null = null;
+
+    // Gentler cubic easing
+    const easeInOutCubic = (t: number) =>
+      t < 0.5
+        ? 4 * t * t * t
+        : 1 - Math.pow(-2 * t + 2, 3) / 2;
+
+    const animation = (currentTime: number) => {
+      if (start === null) start = currentTime;
+      const timeElapsed = currentTime - start;
+      const progress = Math.min(timeElapsed / duration, 1);
+
+      window.scrollTo(0, startPosition + distance * easeInOutCubic(progress));
+
+      if (progress < 1) {
+        requestAnimationFrame(animation);
+      }
+    };
+
+    requestAnimationFrame(animation);
+  };
+
   return (
     <section className="relative min-h-screen overflow-hidden px-6 py-10 flex flex-col items-center justify-center text-center gradient-bg">
       {/* Animated background elements */}
@@ -276,14 +304,32 @@ const HeroSection = ({ scrollToProjects, scrollToContact, scrollToHome }: HeroSe
 
           <div className="flex flex-wrap gap-6 justify-center mb-10">
             <Button 
-              onClick={scrollToProjects}
+              onClick={(e) => {
+                e.preventDefault();
+                const element = document.getElementById('projects');
+                if (element) {
+                  smoothScrollToElement(element, 2000, -50); // 4 seconds
+                  setTimeout(() => {
+                    scrollToProjects();
+                  }, 4100);
+                }
+              }}
               className="bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-3 rounded-lg font-medium transition-all"
             >
               View Projects
             </Button>
 
             <Button 
-              onClick={scrollToContact}
+              onClick={(e) => {
+                e.preventDefault();
+                const element = document.getElementById('contact');
+                if (element) {
+                  smoothScrollToElement(element, 2000, -50); // 4 seconds
+                  setTimeout(() => {
+                    scrollToContact();
+                  }, 4100);
+                }
+              }}
               className="glass-button text-white px-8 py-3 rounded-lg font-medium flex items-center gap-2"
             >
               <Mail size={18} />
@@ -312,19 +358,7 @@ const HeroSection = ({ scrollToProjects, scrollToContact, scrollToHome }: HeroSe
           </div>
         </div>
       </div>
-      
-      {/* Scroll indicator */}
-      <div 
-        className="absolute bottom-16 text-white flex flex-col items-center gap-3"
-        style={{
-          animation: "floatUp 2s ease-in-out infinite"
-        }}
-      >
-        <span className="text-xs font-medium tracking-wider opacity-75">Scroll Down</span>
-        <div className="glass-button p-2 rounded-full">
-          <ChevronDown size={20} />
-        </div>
-      </div>
+  
     </section>
   );
 };
