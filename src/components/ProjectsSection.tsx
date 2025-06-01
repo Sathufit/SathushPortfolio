@@ -133,6 +133,16 @@ const projects: Project[] = [
     image: "/placeholder/minerals.png",
   },
   {
+    title: "Zentra M & Co",
+    description: "A professional React website for Zentra M & Co — an Australian property services company offering premium cleaning, pressure washing, painting, maintenance, flooring, and digital solutions. The site showcases services with a modern design, responsive layout, and smooth user experience.",
+    tech: ["React.js", "Vite", "Tailwind CSS", "JavaScript"],
+    url: "https://www.zentram.com.au/",
+    link: "https://github.com/Sathufit/Zentra-M-CO", // update if needed
+    featured: true,
+    image: "/placeholder/zentra.png", // replace with real image path
+  },
+
+  {
         title: "VoteSphere voting System",
         description: "A fully working voting system using Html and php and MySQL.",
         tech: ["PHP", "MySQL", "HTML", "CSS"],
