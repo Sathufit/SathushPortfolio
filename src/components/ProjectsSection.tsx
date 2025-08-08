@@ -151,6 +151,14 @@ const projects: Project[] = [
         featured: true,
         image: "/placeholder/voteSphere.png",
   },
+  {
+    title: "Live Cricket Scoring System",
+    description: "A live cricket scoring app for Android and iOS. Built with Kotlin and Swift, it enables real-time match tracking, team setup, score updates, and player performance stats.",
+    tech: ["Kotlin", "Swift", "Firebase"],
+    link: "https://github.com/Sathufit/CricketScore", 
+    featured: true,
+    image: "/placeholder/score.png", // replace with actual image path
+    }
   
 ];
 
