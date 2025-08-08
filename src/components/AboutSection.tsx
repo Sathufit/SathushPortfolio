@@ -278,7 +278,7 @@ export default function AboutSection() {
             {/* Update button styles */}
             <motion.div className="flex flex-wrap gap-3" variants={itemVariants}>
               <motion.a
-                href="/CV1.pdf"
+                href="/placeholder/cv.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.05 }}
