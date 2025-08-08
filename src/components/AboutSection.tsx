@@ -384,7 +384,7 @@ export default function AboutSection() {
                     whileHover={{ x: 5, color: "#3b82f6" }}
                   >
                     <Mail size={16} className="w-5" />
-                    <span>sathufit@gmail.com</span>
+                    <span>sathush.nanayakkara04@gmail.com</span>
                   </motion.div>
                   <motion.div
                     className="flex items-center gap-2 text-gray-300 font-medium"

@@ -93,7 +93,7 @@ export default function ContactSection() {
 
   // Contact Information
   const contactInfo = {
-    email: "sathufit@gmail.com",
+    email: "sathush.nanayakkara04@gmail.com",
     phone: "+94 76 934 6516",
     address: "20 Siri Dhammissara Dodanduwa",
     github: "https://github.com/Sathufit",
