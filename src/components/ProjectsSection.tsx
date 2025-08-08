@@ -137,9 +137,9 @@ const projects: Project[] = [
     description: "A professional React website for Zentra M & Co — an Australian property services company offering premium cleaning, pressure washing, painting, maintenance, flooring, and digital solutions. The site showcases services with a modern design, responsive layout, and smooth user experience.",
     tech: ["React.js", "Vite", "Tailwind CSS", "JavaScript"],
     url: "https://www.zentram.com.au/",
-    link: "https://github.com/Sathufit/Zentra-M-CO", // update if needed
+    link: "https://github.com/Sathufit/Zentra-M-CO",
     featured: true,
-    image: "/placeholder/zentra.png", // replace with real image path
+    image: "/placeholder/zentram.png",
   },
 
   {
@@ -151,6 +151,7 @@ const projects: Project[] = [
         featured: true,
         image: "/placeholder/voteSphere.png",
   },
+  
 ];
 
 const ProjectsSection: React.FC = () => {
@@ -384,17 +385,29 @@ const ProjectsSection: React.FC = () => {
         All Projects
       </h3>
       
-      <div className="grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto relative z-10">
-        {projects.map((project, index) => (
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto relative z-10">
+        {projects.map((project) => (
           <div
-            key={index}
-            onMouseEnter={() => setIsHovering(index)}
-            onMouseLeave={() => setIsHovering(null)}
+            key={project.title}
+            className="flex flex-col justify-between h-[450px] bg-gray-900 rounded-lg shadow-lg p-6"
+            style={{ minHeight: "450px", maxHeight: "450px" }}
           >
-            <ProjectCard 
-              {...project} 
-              isHovering={isHovering === index}
+            <img
+              src={project.image}
+              alt={project.title}
+              className="rounded mb-4 h-36 w-full object-cover"
+              style={{ minHeight: "144px", maxHeight: "144px" }}
             />
+            <div className="flex-1 flex flex-col">
+              <h3 className="text-lg font-semibold text-white mb-2">{project.title}</h3>
+              <p className="text-gray-300 text-sm mb-4">{project.description}</p>
+            </div>
+            <div className="flex items-center justify-between mt-4">
+              <a href={project.link} className="btn-code">Code</a>
+              {project.url && (
+                <a href={project.url} className="btn-visit">Visit</a>
+              )}
+            </div>
           </div>
         ))}
       </div>

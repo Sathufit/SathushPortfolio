@@ -118,12 +118,39 @@ export default function AboutSection() {
 
   // Data from CV
   const technologies = [
-    { name: "React", icon: <Code size={16} /> },
-    { name: "Tailwind", icon: <Code size={16} /> },
+    // Languages
+    { name: "Java", icon: <Code size={16} /> },
+    { name: "Python", icon: <Code size={16} /> },
+    { name: "JavaScript", icon: <Code size={16} /> },
+    { name: "C++", icon: <Code size={16} /> },
+    { name: "C", icon: <Code size={16} /> },
+    { name: "PHP", icon: <Code size={16} /> },
+    { name: "Kotlin", icon: <Code size={16} /> },
+    { name: "Swift", icon: <Code size={16} /> },
+    { name: "HTML", icon: <Code size={16} /> },
+    { name: "CSS", icon: <Code size={16} /> },
+    // Web Technologies
+    { name: "React.js", icon: <Code size={16} /> },
     { name: "Node.js", icon: <Code size={16} /> },
+    { name: "Express", icon: <Code size={16} /> },
+    { name: "Next.js", icon: <Code size={16} /> },
+    // Mobile
+    { name: "Kotlin (Android)", icon: <Code size={16} /> },
+    { name: "Swift (iOS – basic)", icon: <Code size={16} /> },
+    // Databases
+    { name: "MySQL", icon: <Code size={16} /> },
     { name: "MongoDB", icon: <Code size={16} /> },
-    { name: "TypeScript", icon: <Code size={16} /> },
-    { name: "Framer Motion", icon: <Code size={16} /> }
+    { name: "Firebase", icon: <Code size={16} /> },
+    // Tools & Platforms
+    { name: "Git", icon: <Code size={16} /> },
+    { name: "GitHub", icon: <Code size={16} /> },
+    { name: "VS Code", icon: <Code size={16} /> },
+    { name: "Figma", icon: <Code size={16} /> },
+    { name: "Postman", icon: <Code size={16} /> },
+    // Concepts
+    { name: "REST APIs", icon: <Code size={16} /> },
+    { name: "OOP", icon: <Code size={16} /> },
+    { name: "Agile Methodologies", icon: <Code size={16} /> }
   ];
 
   const skills = [
@@ -251,7 +278,7 @@ export default function AboutSection() {
             {/* Update button styles */}
             <motion.div className="flex flex-wrap gap-3" variants={itemVariants}>
               <motion.a
-                href="/cv.pdf"
+                href="/CV1.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.05 }}

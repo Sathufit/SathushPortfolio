@@ -10,51 +10,70 @@ const ProjectCard = ({ title, description, tech, url, link, image, isHovering })
         }, children: [_jsxs("div", { className: "relative overflow-hidden h-48", children: [_jsx("div", { className: "absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent z-10" }), _jsx("img", { src: image, alt: title, className: "w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" }), _jsx("div", { className: "absolute inset-0 opacity-0 group-hover:opacity-30 transition-opacity duration-300 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 z-10" })] }), _jsxs("div", { className: "p-6", children: [_jsx("h3", { className: "text-xl font-bold text-white mb-2", children: title }), _jsx("p", { className: "text-gray-300 mb-4 text-sm", children: description }), _jsx("div", { className: "flex flex-wrap gap-2 mb-5", children: tech.map((item, i) => (_jsx("span", { className: "glass-button text-xs px-2 py-1 rounded-md font-medium text-white", children: item }, i))) }), _jsxs("div", { className: "flex flex-wrap gap-3 mt-auto", children: [_jsx(Button, { asChild: true, className: "bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-1 px-3 rounded-lg transition-all duration-300 text-xs flex items-center gap-1", children: _jsxs("a", { href: link, target: "_blank", rel: "noopener noreferrer", children: [_jsx(Github, { size: 14 }), _jsx("span", { children: "Code" })] }) }), url && (_jsx(Button, { asChild: true, className: "glass-button text-white font-medium py-1 px-3 rounded-lg transition-all duration-300 text-xs flex items-center gap-1", children: _jsxs("a", { href: url, target: "_blank", rel: "noopener noreferrer", children: [_jsx(Globe, { size: 14 }), _jsx("span", { children: "Visit" })] }) }))] })] })] }));
 };
 const projects = [
-    {
-        title: "SLSBA Project(Sri Lanka Schools Badminton Association)",
-        description: "A full MERN stack dashboard for Sri Lanka Schools Badminton Association.",
-        tech: ["React", "Node.js", "MongoDB"],
-        url: "https://slsba.onrender.com/",
-        link: "https://github.com/Sathufit/SLSBA",
-        featured: true,
-        image: "/placeholder/slsba.png",
-    },
-    {
-        title: "Finance Tracker (Kotlin)",
-        description: "Android app to track income, expenses, and monthly budgets.",
-        tech: ["Kotlin", "Android Studio", "MPAndroidChart"],
-        link: "https://github.com/Sathufit/FinanceTracker",
-        featured: true,
-        image: "/placeholder/finance.png",
-    },
-    {
-        title: "FrontyardCricket",
-        description: "A full-stack MERN application to add, update, and delete cricket stats like runs and wickets, while calculating batting and bowling averages to track player performance over time.",
-        tech: ["MongoDB", "Express.js", "React.js", "Node.js"],
-        url: "https://frontyardcricket.onrender.com/",
-        link: "https://github.com/Sathufit/frontendCrickweb",
-        featured: true,
-        image: "/placeholder/cric.png"
-    },
-    {
-        title: "FIA Minerals",
-        description: "A modern and responsive React website for FIA Minerals Pvt Ltd — a Sri Lankan quartz export company. Showcases products, applications, and contact information with clean visuals and SEO-friendly design.",
-        tech: ["React.js", "Vite", "Tailwind CSS", "JavaScript"],
-        url: "https://www.fiaminerals.com/",
-        link: "https://github.com/Sathufit/fia-minerals",
-        featured: true,
-        image: "/placeholder/minerals.png",
-    },
-    {
-        title: "VoteSphere voting System",
-        description: "A fully working voting system using Html and php and MySQL.",
-        tech: ["PHP", "MySQL", "HTML", "CSS"],
-        url: "https://votesphere.infinityfreeapp.com/",
-        link: "https://github.com/Sathufit/VoteSphere-voting-system",
-        featured: true,
-        image: "/placeholder/voteSphere.png",
+  {
+    title: "SLSBA Project (Sri Lanka Schools Badminton Association)",
+    description: "A MERN stack web app with admin dashboards, tournament management, payment tracking, and secure registration for the Sri Lanka Schools Badminton Association.",
+    tech: ["React", "Node.js", "MongoDB"],
+    url: "https://slsba.onrender.com/",
+    link: "https://github.com/Sathufit/SLSBA",
+    featured: true,
+    image: "/placeholder/slsba.png",
+  },
+  {
+    title: "Finance Tracker (Kotlin)",
+    description: "An Android budgeting app that helps track monthly income, expenses, and transactions with real-time data visualization using MPAndroidChart.",
+    tech: ["Kotlin", "Android Studio", "MPAndroidChart"],
+    link: "https://github.com/Sathufit/FinanceTracker",
+    featured: true,
+    image: "/placeholder/finance.png",
+  },
+  {
+    title: "FrontyardCricket",
+    description: "A full-stack MERN app for tracking player stats, adding matches, calculating averages, and managing cricket records with a clean dashboard.",
+    tech: ["MongoDB", "Express.js", "React.js", "Node.js"],
+    url: "https://frontyardcricket.onrender.com/",
+    link: "https://github.com/Sathufit/frontendCrickweb",
+    featured: true,
+    image: "/placeholder/cric.png"
+  },
+  {
+    title: "FIA Minerals",
+    description: "A responsive business site for a Sri Lankan quartz exporter. Includes product catalog, contact form, and clean, SEO-optimized UI with Tailwind CSS.",
+    tech: ["React.js", "Vite", "Tailwind CSS", "JavaScript"],
+    url: "https://www.fiaminerals.com/",
+    link: "https://github.com/Sathufit/fia-minerals",
+    featured: true,
+    image: "/placeholder/minerals.png",
+  },
+  {
+    title: "VoteSphere Voting System",
+    description: "A PHP and MySQL-based voting platform with program selection, admin panel, and result display. Built with HTML, CSS, and backend validation.",
+    tech: ["PHP", "MySQL", "HTML", "CSS"],
+    url: "https://votesphere.infinityfreeapp.com/",
+    link: "https://github.com/Sathufit/VoteSphere-voting-system",
+    featured: true,
+    image: "/placeholder/voteSphere.png",
+  },
+  {
+    title: "Zentra M & Co",
+    description: "A React website for an Australian property service company. Offers smooth UI to showcase services like cleaning, painting, flooring, and maintenance.",
+    tech: ["React.js", "Vite", "Tailwind CSS", "JavaScript"],
+    url: "https://www.zentram.com.au/",
+    link: "https://github.com/Sathufit/Zentra-M-CO",
+    featured: true,
+    image: "/placeholder/zentram.png",
+  },
+  {
+    title: "Live Cricket Scoring System",
+    description: "A live cricket scoring app for Android and iOS. Built with Kotlin and Swift, it enables real-time match tracking, team setup, score updates, and player performance stats.",
+    tech: ["Kotlin", "Swift", "Firebase"],
+    link: "https://github.com/Sathufit/CricketScore", 
+    featured: true,
+    image: "/placeholder/score.png", // replace with actual image path
     }
+
 ];
+
 const ProjectsSection = () => {
     const [activeIndex, setActiveIndex] = useState(0);
     const [isHovering, setIsHovering] = useState(null);
