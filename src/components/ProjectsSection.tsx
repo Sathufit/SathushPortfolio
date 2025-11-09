@@ -107,6 +107,15 @@ const projects: Project[] = [
     image: "/placeholder/slsba.png",
   },
   {
+    title: "MovieAI",
+    description: "An AI-powered movie discovery platform that helps you find new movies based on your preferences using advanced AI recommendations.",
+    tech: ["React", "AI/ML", "Tailwind CSS", "Vercel"],
+    url: "https://movieai-eta.vercel.app",
+    link: "https://github.com/Sathufit/MovieAI",
+    featured: true,
+    image: "/placeholder/movieai.png",
+  },
+  {
     title: "Finance Tracker (Kotlin)",
     description: "Android app to track income, expenses, and monthly budgets.",
     tech: ["Kotlin", "Android Studio", "MPAndroidChart"],
