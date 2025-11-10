@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 import { Github, Linkedin, Mail, ArrowDown } from "lucide-react";
-import Hero3D from "./Hero3D";
+import { Suspense, lazy } from "react";
+
+const Hero3D = lazy(() => import("./Hero3D"));
 
 interface HeroSectionProps {
   scrollToProjects: () => void;
@@ -10,8 +12,10 @@ interface HeroSectionProps {
 export default function HeroSection({ scrollToProjects, scrollToContact }: HeroSectionProps) {
   return (
     <section id="home" className="relative min-h-screen flex items-center px-6 pt-16 bg-gradient-to-b from-gray-50 to-white overflow-hidden">
-      {/* 3D Laptop on Right Side */}
-      <Hero3D />
+      {/* 3D Shapes on Right Side */}
+      <Suspense fallback={<div className="absolute right-0 top-0 w-full md:w-1/2 h-full" />}>
+        <Hero3D />
+      </Suspense>
       
       {/* Content on Left Side */}
       <div className="max-w-7xl w-full mx-auto relative z-10">
