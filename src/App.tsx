@@ -1,94 +1,39 @@
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
+import Navigation from "./components/Navigation";
 import HeroSection from "./components/HeroSection";
 import AboutSection from "./components/AboutSection";
 import ProjectsSection from "./components/ProjectsSection";
 import ContactSection from "./components/ContactSection";
 
 function App() {
+  const homeRef = useRef<HTMLDivElement>(null);
+  const aboutRef = useRef<HTMLDivElement>(null);
   const projectsRef = useRef<HTMLDivElement>(null);
   const contactRef = useRef<HTMLDivElement>(null);
 
-  // 👉 Scroll handlers
-  const scrollToSection = (element: HTMLElement | null) => {
-    if (!element) return;
-
-    const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
-    const startPosition = window.pageYOffset;
-    const distance = elementPosition - startPosition;
-    const duration = 3000; // Try 3000ms for a natural feel
-    let start: number | null = null;
-
-    // Smooth easing function
-    const easeInOutCubic = (t: number): number => {
-      return t < 0.5 
-        ? 4 * t * t * t 
-        : 1 - Math.pow(-2 * t + 2, 3) / 2;
-    };
-
-    const animation = (currentTime: number) => {
-      if (start === null) start = currentTime;
-      const timeElapsed = currentTime - start;
-      const progress = Math.min(timeElapsed / duration, 1);
-
-      window.scrollTo(0, startPosition + distance * easeInOutCubic(progress));
-
-      if (progress < 1) {
-        requestAnimationFrame(animation);
-      }
-    };
-
-    requestAnimationFrame(animation);
+  const scrollToSection = (ref: React.RefObject<HTMLDivElement>) => {
+    ref.current?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
-
-  // Update the scroll handlers
-  const scrollToProjects = () => {
-    if (projectsRef.current) {
-      scrollToSection(projectsRef.current);
-      window.history.pushState(null, "", "/projects");
-    }
-  };
-
-  const scrollToContact = () => {
-    if (contactRef.current) {
-      scrollToSection(contactRef.current);
-      window.history.pushState(null, "", "/contact");
-    }
-  };
-
-  const scrollToHome = () => {
-    scrollToSection(document.body);
-    window.history.pushState(null, "", "/home");
-  };
-
-  // 🌀 Track scroll position to update path
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollY = window.scrollY;
-      const projectsTop = projectsRef.current?.offsetTop || 0;
-      const contactTop = contactRef.current?.offsetTop || 0;
-
-      if (scrollY >= contactTop - 200) {
-        window.history.replaceState(null, "", "/contact");
-      } else if (scrollY >= projectsTop - 200) {
-        window.history.replaceState(null, "", "/projects");
-      } else {
-        window.history.replaceState(null, "", "/home");
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   return (
-    <main className="bg-background text-text smooth-scroll">
-      <HeroSection
-        scrollToProjects={scrollToProjects}
-        scrollToContact={scrollToContact}
-        scrollToHome={scrollToHome}
+    <div className="min-h-screen bg-white">
+      <Navigation
+        scrollToHome={() => scrollToSection(homeRef)}
+        scrollToAbout={() => scrollToSection(aboutRef)}
+        scrollToProjects={() => scrollToSection(projectsRef)}
+        scrollToContact={() => scrollToSection(contactRef)}
       />
 
-      <AboutSection />
+      <div ref={homeRef}>
+        <HeroSection
+          scrollToProjects={() => scrollToSection(projectsRef)}
+          scrollToContact={() => scrollToSection(contactRef)}
+        />
+      </div>
+
+      <div ref={aboutRef}>
+        <AboutSection />
+      </div>
 
       <div ref={projectsRef}>
         <ProjectsSection />
@@ -97,7 +42,16 @@ function App() {
       <div ref={contactRef}>
         <ContactSection />
       </div>
-    </main>
+
+      {/* Footer */}
+      <footer className="bg-gray-900 text-white py-8 px-6">
+        <div className="max-w-7xl mx-auto text-center">
+          <p className="text-gray-400">
+            © {new Date().getFullYear()} Sathush Nanayakkara. Built with React & Tailwind CSS.
+          </p>
+        </div>
+      </footer>
+    </div>
   );
 }
 
