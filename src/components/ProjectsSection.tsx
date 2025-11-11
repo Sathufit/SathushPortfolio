@@ -57,7 +57,7 @@ export default function ProjectsSection() {
   ];
 
   return (
-    <section ref={containerRef} id="projects" className="py-32 px-6 bg-white">
+    <section ref={containerRef} id="projects" className="py-32 px-6">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -66,8 +66,8 @@ export default function ProjectsSection() {
         >
           {/* Header */}
           <div className="mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Selected Work</h2>
-            <div className="w-12 h-1 bg-gray-900" />
+            <h2 className="text-3xl md:text-4xl font-bold text-zinc-50 mb-4">Selected Work</h2>
+            <div className="w-12 h-1 bg-zinc-50" />
           </div>
 
           {/* Projects Grid */}
@@ -79,10 +79,10 @@ export default function ProjectsSection() {
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 transition={{ duration: 0.6, delay: 0.1 * index }}
                 whileHover={{ y: -4 }}
-                className="group bg-gray-50 rounded-lg overflow-hidden border border-gray-200 hover:border-gray-900 transition-all duration-300"
+                className="group glass rounded-lg overflow-hidden hover:bg-zinc-800/50 transition-all duration-300 shine"
               >
                 {/* Project Image */}
-                <div className="relative h-64 bg-gray-100 overflow-hidden">
+                <div className="relative h-64 bg-zinc-900 overflow-hidden">
                   <img
                     src={project.image}
                     alt={project.title}
@@ -98,10 +98,10 @@ export default function ProjectsSection() {
                 {/* Project Info */}
                 <div className="p-6 space-y-4">
                   <div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                    <h3 className="text-xl font-semibold text-zinc-50 mb-2">
                       {project.title}
                     </h3>
-                    <p className="text-gray-600 text-sm leading-relaxed">
+                    <p className="text-zinc-400 text-sm leading-relaxed">
                       {project.description}
                     </p>
                   </div>
@@ -111,7 +111,7 @@ export default function ProjectsSection() {
                     {project.tech.map((tech, i) => (
                       <span
                         key={i}
-                        className="px-3 py-1 bg-white border border-gray-200 rounded text-xs font-medium text-gray-700"
+                        className="px-3 py-1 bg-zinc-900/50 border border-zinc-700 rounded text-xs font-medium text-zinc-300"
                       >
                         {tech}
                       </span>
@@ -125,7 +125,7 @@ export default function ProjectsSection() {
                         href={project.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 text-sm font-medium text-gray-900 hover:opacity-60 transition-opacity"
+                        className="inline-flex items-center gap-2 text-sm font-medium text-zinc-50 hover:opacity-60 transition-opacity"
                       >
                         View Live
                         <ExternalLink size={16} />
@@ -135,7 +135,7 @@ export default function ProjectsSection() {
                       href={project.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
+                      className="inline-flex items-center gap-2 text-sm font-medium text-zinc-400 hover:text-zinc-50 transition-colors"
                     >
                       Code
                       <Github size={16} />

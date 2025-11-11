@@ -26,7 +26,7 @@ export default function AboutSection() {
   ];
 
   return (
-    <section ref={containerRef} id="about" className="py-32 px-6 bg-gray-50">
+    <section ref={containerRef} id="about" className="py-32 px-6">
       <div className="max-w-4xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -36,12 +36,12 @@ export default function AboutSection() {
         >
           {/* Header */}
           <div>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">About Me</h2>
-            <div className="w-12 h-1 bg-gray-900" />
+            <h2 className="text-3xl md:text-4xl font-bold text-zinc-50 mb-4">About Me</h2>
+            <div className="w-12 h-1 bg-zinc-50" />
           </div>
 
           {/* Bio */}
-          <div className="space-y-4 text-gray-600 text-lg leading-relaxed">
+          <div className="space-y-4 text-zinc-400 text-lg leading-relaxed">
             <p>
               I'm a software engineering student at SLIIT with a passion for building
               elegant solutions to complex problems. My journey in tech started with
@@ -64,18 +64,18 @@ export default function AboutSection() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 transition={{ duration: 0.6, delay: 0.1 * (index + 1) }}
-                whileHover={{ y: -4, borderColor: "#1a1a1a" }}
-                className="bg-white p-6 rounded-lg border border-gray-200 transition-all duration-300"
+                whileHover={{ y: -4, borderColor: "#52525b" }}
+                className="glass p-6 rounded-lg transition-all duration-300 shine"
               >
-                <h3 className="font-semibold text-gray-900 mb-2">{item.title}</h3>
-                <p className="text-sm text-gray-600">{item.description}</p>
+                <h3 className="font-semibold text-zinc-50 mb-2">{item.title}</h3>
+                <p className="text-sm text-zinc-400">{item.description}</p>
               </motion.div>
             ))}
           </div>
 
           {/* Skills */}
           <div>
-            <h3 className="text-xl font-semibold text-gray-900 mb-6">Skills & Technologies</h3>
+            <h3 className="text-xl font-semibold text-zinc-50 mb-6">Skills & Technologies</h3>
             <div className="flex flex-wrap gap-3">
               {skills.map((skill, index) => (
                 <motion.span
@@ -84,7 +84,7 @@ export default function AboutSection() {
                   animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
                   transition={{ duration: 0.3, delay: 0.05 * index }}
                   whileHover={{ scale: 1.05, y: -2 }}
-                  className="px-4 py-2 bg-white border border-gray-200 rounded-lg text-sm font-medium text-gray-700 hover:border-gray-900 transition-colors cursor-default"
+                  className="px-4 py-2 glass rounded-lg text-sm font-medium text-zinc-300 hover:bg-zinc-800 transition-colors cursor-default"
                 >
                   {skill}
                 </motion.span>

@@ -34,7 +34,7 @@ export default function ContactSection() {
   };
 
   return (
-    <section ref={containerRef} id="contact" className="py-32 px-6 bg-gray-50">
+    <section ref={containerRef} id="contact" className="py-32 px-6">
       <div className="max-w-4xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -44,9 +44,9 @@ export default function ContactSection() {
         >
           {/* Header */}
           <div>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Get In Touch</h2>
-            <div className="w-12 h-1 bg-gray-900 mb-6" />
-            <p className="text-lg text-gray-600">
+            <h2 className="text-3xl md:text-4xl font-bold text-zinc-50 mb-4">Get In Touch</h2>
+            <div className="w-12 h-1 bg-zinc-50 mb-6" />
+            <p className="text-lg text-zinc-400">
               Have a project in mind or just want to chat? Feel free to reach out.
             </p>
           </div>
@@ -64,14 +64,14 @@ export default function ContactSection() {
                 whileHover={{ x: 4 }}
                 transition={{ duration: 0.2 }}
               >
-                <div className="p-3 bg-white rounded-lg border border-gray-200">
-                  <Mail className="w-5 h-5 text-gray-900" />
+                <div className="p-3 glass rounded-lg">
+                  <Mail className="w-5 h-5 text-zinc-50" />
                 </div>
                 <div>
-                  <p className="text-sm text-gray-500 mb-1">Email</p>
+                  <p className="text-sm text-zinc-500 mb-1">Email</p>
                   <a
                     href="mailto:sathushnayakkara@gmail.com"
-                    className="text-gray-900 hover:opacity-60 transition-opacity"
+                    className="text-zinc-50 hover:opacity-60 transition-opacity"
                   >
                     sathush.nanayakkara04@gmail.com
                   </a>
@@ -83,38 +83,38 @@ export default function ContactSection() {
                 whileHover={{ x: 4 }}
                 transition={{ duration: 0.2 }}
               >
-                <div className="p-3 bg-white rounded-lg border border-gray-200">
-                  <MapPin className="w-5 h-5 text-gray-900" />
+                <div className="p-3 glass rounded-lg">
+                  <MapPin className="w-5 h-5 text-zinc-50" />
                 </div>
                 <div>
-                  <p className="text-sm text-gray-500 mb-1">Location</p>
-                  <p className="text-gray-900">Colombo, Sri Lanka</p>
+                  <p className="text-sm text-zinc-500 mb-1">Location</p>
+                  <p className="text-zinc-50">Colombo, Sri Lanka</p>
                 </div>
               </motion.div>
 
               {/* Social Links */}
               <div className="pt-6">
-                <p className="text-sm text-gray-500 mb-4">Connect with me</p>
+                <p className="text-sm text-zinc-500 mb-4">Connect with me</p>
                 <div className="flex gap-3">
                   <motion.a
                     href="https://github.com/Sathufit"
                     target="_blank"
                     rel="noopener noreferrer"
-                    whileHover={{ y: -2, borderColor: "#1a1a1a" }}
+                    whileHover={{ y: -2 }}
                     transition={{ duration: 0.2 }}
-                    className="p-3 bg-white rounded-lg border border-gray-200 hover:border-gray-900 transition-colors"
+                    className="p-3 glass rounded-lg hover:bg-zinc-800 transition-colors"
                   >
-                    <Github className="w-5 h-5 text-gray-900" />
+                    <Github className="w-5 h-5 text-zinc-50" />
                   </motion.a>
                   <motion.a
                     href="https://www.linkedin.com/in/sathush-nayakkara"
                     target="_blank"
                     rel="noopener noreferrer"
-                    whileHover={{ y: -2, borderColor: "#1a1a1a" }}
+                    whileHover={{ y: -2 }}
                     transition={{ duration: 0.2 }}
-                    className="p-3 bg-white rounded-lg border border-gray-200 hover:border-gray-900 transition-colors"
+                    className="p-3 glass rounded-lg hover:bg-zinc-800 transition-colors"
                   >
-                    <Linkedin className="w-5 h-5 text-gray-900" />
+                    <Linkedin className="w-5 h-5 text-zinc-50" />
                   </motion.a>
                 </div>
               </div>
@@ -129,7 +129,7 @@ export default function ContactSection() {
               transition={{ duration: 0.6, delay: 0.3 }}
             >
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                <label htmlFor="name" className="block text-sm font-medium text-zinc-300 mb-2">
                   Name
                 </label>
                 <motion.input
@@ -140,13 +140,13 @@ export default function ContactSection() {
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   whileFocus={{ scale: 1.01 }}
                   transition={{ duration: 0.2 }}
-                  className="w-full px-4 py-3 bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-gray-900 transition-colors"
+                  className="w-full px-4 py-3 glass rounded-lg focus:outline-none focus:bg-zinc-800 transition-colors text-zinc-50 placeholder-zinc-500"
                   placeholder="Your name"
                 />
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                <label htmlFor="email" className="block text-sm font-medium text-zinc-300 mb-2">
                   Email
                 </label>
                 <motion.input
@@ -157,13 +157,13 @@ export default function ContactSection() {
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   whileFocus={{ scale: 1.01 }}
                   transition={{ duration: 0.2 }}
-                  className="w-full px-4 py-3 bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-gray-900 transition-colors"
+                  className="w-full px-4 py-3 glass rounded-lg focus:outline-none focus:bg-zinc-800 transition-colors text-zinc-50 placeholder-zinc-500"
                   placeholder="your@email.com"
                 />
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+                <label htmlFor="message" className="block text-sm font-medium text-zinc-300 mb-2">
                   Message
                 </label>
                 <motion.textarea
@@ -174,7 +174,7 @@ export default function ContactSection() {
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   whileFocus={{ scale: 1.01 }}
                   transition={{ duration: 0.2 }}
-                  className="w-full px-4 py-3 bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-gray-900 transition-colors resize-none"
+                  className="w-full px-4 py-3 glass rounded-lg focus:outline-none focus:bg-zinc-800 transition-colors resize-none text-zinc-50 placeholder-zinc-500"
                   placeholder="Your message..."
                 />
               </div>
@@ -185,7 +185,7 @@ export default function ContactSection() {
                 whileHover={{ scale: status === "loading" ? 1 : 1.02 }}
                 whileTap={{ scale: status === "loading" ? 1 : 0.98 }}
                 transition={{ duration: 0.2 }}
-                className="w-full px-6 py-3 bg-gray-900 text-white text-sm font-medium rounded-lg hover:bg-gray-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                className="w-full px-6 py-3 bg-zinc-50 text-zinc-950 text-sm font-medium rounded-lg hover:bg-zinc-200 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 shine"
               >
                 {status === "loading" ? (
                   "Sending..."
@@ -202,7 +202,7 @@ export default function ContactSection() {
                 <motion.div
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="flex items-center gap-2 p-4 bg-green-50 border border-green-200 rounded-lg text-green-700 text-sm"
+                  className="flex items-center gap-2 p-4 glass rounded-lg text-green-400 text-sm"
                 >
                   <CheckCircle size={16} />
                   <span>Message sent successfully! I'll get back to you soon.</span>
@@ -213,7 +213,7 @@ export default function ContactSection() {
                 <motion.div
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="flex items-center gap-2 p-4 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm"
+                  className="flex items-center gap-2 p-4 glass rounded-lg text-red-400 text-sm"
                 >
                   <XCircle size={16} />
                   <span>Something went wrong. Please try again.</span>

@@ -16,7 +16,7 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-zinc-950">
       <Navigation
         scrollToHome={() => scrollToSection(homeRef)}
         scrollToAbout={() => scrollToSection(aboutRef)}
@@ -44,9 +44,9 @@ function App() {
       </div>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-white py-8 px-6">
+      <footer className="bg-zinc-900 border-t border-zinc-800 py-8 px-6">
         <div className="max-w-7xl mx-auto text-center">
-          <p className="text-gray-400">
+          <p className="text-zinc-500">
             © {new Date().getFullYear()} Sathush Nanayakkara.
           </p>
         </div>

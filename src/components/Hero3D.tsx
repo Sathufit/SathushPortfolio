@@ -37,9 +37,11 @@ function FloatingShapes() {
       <mesh ref={torusRef} position={[0, 0, 0]}>
         <torusGeometry args={[1, 0.4, 16, 100]} />
         <meshStandardMaterial
-          color="#1a1a1a"
+          color="#fafafa"
           metalness={0.9}
           roughness={0.1}
+          emissive="#fafafa"
+          emissiveIntensity={0.2}
         />
       </mesh>
 
@@ -47,10 +49,12 @@ function FloatingShapes() {
       <mesh ref={sphereRef} position={[-2, 0.5, 0]}>
         <sphereGeometry args={[0.5, 32, 32]} />
         <meshStandardMaterial
-          color="#666666"
+          color="#a1a1aa"
           wireframe
           metalness={0.8}
           roughness={0.2}
+          emissive="#a1a1aa"
+          emissiveIntensity={0.1}
         />
       </mesh>
 
@@ -58,9 +62,11 @@ function FloatingShapes() {
       <mesh ref={boxRef} position={[2, -0.3, 0]}>
         <boxGeometry args={[0.7, 0.7, 0.7]} />
         <meshStandardMaterial
-          color="#1a1a1a"
+          color="#d4d4d8"
           metalness={0.9}
           roughness={0.1}
+          emissive="#d4d4d8"
+          emissiveIntensity={0.15}
         />
       </mesh>
     </>
@@ -74,10 +80,10 @@ export default function Hero3D() {
         camera={{ position: [0, 0, 5], fov: 50 }}
         dpr={[1, 2]}
       >
-        <ambientLight intensity={0.5} />
-        <directionalLight position={[10, 10, 5]} intensity={1.2} />
-        <directionalLight position={[-10, -5, -5]} intensity={0.4} />
-        <pointLight position={[0, 0, 5]} intensity={0.6} />
+        <ambientLight intensity={0.8} />
+        <directionalLight position={[10, 10, 5]} intensity={1.5} color="#fafafa" />
+        <directionalLight position={[-10, -5, -5]} intensity={0.6} color="#a1a1aa" />
+        <pointLight position={[0, 0, 5]} intensity={0.8} color="#d4d4d8" />
         
         <FloatingShapes />
       </Canvas>
