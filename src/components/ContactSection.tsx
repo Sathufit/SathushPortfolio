@@ -73,7 +73,7 @@ export default function ContactSection() {
                     href="mailto:sathushnayakkara@gmail.com"
                     className="text-gray-900 hover:opacity-60 transition-opacity"
                   >
-                    sathushnayakkara@gmail.com
+                    sathush.nanayakkara04@gmail.com
                   </a>
                 </div>
               </motion.div>

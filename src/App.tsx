@@ -47,7 +47,7 @@ function App() {
       <footer className="bg-gray-900 text-white py-8 px-6">
         <div className="max-w-7xl mx-auto text-center">
           <p className="text-gray-400">
-            © {new Date().getFullYear()} Sathush Nanayakkara. Built with React & Tailwind CSS.
+            © {new Date().getFullYear()} Sathush Nanayakkara.
           </p>
         </div>
       </footer>

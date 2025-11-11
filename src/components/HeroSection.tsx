@@ -109,7 +109,7 @@ export default function HeroSection({ scrollToProjects, scrollToContact }: HeroS
               <Linkedin size={20} />
             </a>
             <a
-              href="mailto:sathushnayakkara@gmail.com"
+              href="mailto:sathush.nanayakkara04@gmail.com"
               className="p-2 text-gray-600 hover:text-gray-900 transition-colors"
               aria-label="Email"
             >
