@@ -42,13 +42,14 @@ export default function HeroSection({ scrollToProjects, scrollToContact }: HeroS
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.6 }}
-            className="text-5xl md:text-7xl font-bold text-zinc-50 tracking-tight leading-[1.1]"
+            className="text-5xl md:text-7xl font-bold tracking-tight leading-[1.1]"
           >
-            Full Stack Developer
+            <span className="text-zinc-50">Hi, I'm </span>
+            <span className="text-zinc-50">Sathush</span>
             <br />
-            <span className="text-zinc-500">Building Digital</span>
+            <span className="text-zinc-50">Full Stack</span>
             <br />
-            <span className="text-zinc-500">Experiences</span>
+            <span className="text-zinc-400">Developer</span>
           </motion.h1>
 
           {/* Description */}
@@ -56,10 +57,10 @@ export default function HeroSection({ scrollToProjects, scrollToContact }: HeroS
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.6 }}
-            className="text-lg md:text-xl text-zinc-400 max-w-2xl leading-relaxed"
+            className="text-lg md:text-xl text-zinc-400 max-w-lg leading-relaxed"
           >
-            Software engineering student at SLIIT specializing in MERN stack development.
-            I craft clean, performant web applications with modern technologies.
+            I build fast, polished web applications for real businesses — from MERN
+            stack dashboards to full client websites. Based in Sri Lanka.
           </motion.p>
 
           {/* CTA Buttons */}
@@ -71,13 +72,13 @@ export default function HeroSection({ scrollToProjects, scrollToContact }: HeroS
           >
             <button
               onClick={scrollToProjects}
-              className="px-6 py-3 bg-zinc-50 text-zinc-950 text-sm font-medium rounded-lg hover:bg-zinc-200 transition-colors shine"
+              className="px-7 py-3 bg-zinc-50 text-zinc-950 text-sm font-semibold rounded-lg hover:bg-zinc-200 transition-colors shine"
             >
               View Work
             </button>
             <button
               onClick={scrollToContact}
-              className="px-6 py-3 glass text-zinc-50 text-sm font-medium rounded-lg hover:bg-zinc-800 transition-colors"
+              className="px-7 py-3 glass text-zinc-50 text-sm font-semibold rounded-lg hover:bg-zinc-800 transition-colors border border-zinc-700"
             >
               Get in Touch
             </button>
@@ -88,13 +89,13 @@ export default function HeroSection({ scrollToProjects, scrollToContact }: HeroS
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6, duration: 0.6 }}
-            className="flex items-center gap-4 pt-4"
+            className="flex items-center gap-1 pt-2"
           >
             <a
               href="https://github.com/Sathufit"
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 text-zinc-400 hover:text-zinc-50 transition-colors"
+              className="p-2 glass rounded-lg text-zinc-400 hover:text-zinc-50 hover:bg-zinc-800 transition-all"
               aria-label="GitHub"
             >
               <Github size={20} />
@@ -103,14 +104,14 @@ export default function HeroSection({ scrollToProjects, scrollToContact }: HeroS
               href="https://www.linkedin.com/in/sathush-nayakkara"
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 text-zinc-400 hover:text-zinc-50 transition-colors"
+              className="p-2 glass rounded-lg text-zinc-400 hover:text-zinc-50 hover:bg-zinc-800 transition-all"
               aria-label="LinkedIn"
             >
               <Linkedin size={20} />
             </a>
             <a
               href="mailto:sathush.nanayakkara04@gmail.com"
-              className="p-2 text-zinc-400 hover:text-zinc-50 transition-colors"
+              className="p-2 glass rounded-lg text-zinc-400 hover:text-zinc-50 hover:bg-zinc-800 transition-all"
               aria-label="Email"
             >
               <Mail size={20} />

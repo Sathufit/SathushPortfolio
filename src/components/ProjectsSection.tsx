@@ -89,7 +89,7 @@ export default function ProjectsSection() {
                 className="group glass rounded-lg overflow-hidden hover:bg-zinc-800/50 transition-all duration-300 shine"
               >
                 {/* Project Image */}
-                <div className="relative h-64 bg-zinc-900 overflow-hidden">
+                <div className="relative h-56 bg-zinc-900 overflow-hidden">
                   <img
                     src={project.image}
                     alt={project.title}
@@ -138,15 +138,17 @@ export default function ProjectsSection() {
                         <ExternalLink size={16} />
                       </a>
                     )}
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-sm font-medium text-zinc-400 hover:text-zinc-50 transition-colors"
-                    >
-                      Code
-                      <Github size={16} />
-                    </a>
+                    {project.github && (
+                      <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 text-sm font-medium text-zinc-400 hover:text-zinc-50 transition-colors"
+                      >
+                        Code
+                        <Github size={16} />
+                      </a>
+                    )}
                   </div>
                 </div>
               </motion.div>

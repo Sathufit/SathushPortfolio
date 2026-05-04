@@ -10,6 +10,12 @@ export default function AboutSection() {
     "React Native", "Next.js", "PostgreSQL", "Firebase", "Git", "Figma"
   ];
 
+  const stats = [
+    { value: "8+", label: "Projects Shipped" },
+    { value: "3+", label: "Client Websites" },
+    { value: "3 yrs", label: "of Coding" },
+  ];
+
   const experience = [
     {
       title: "Full Stack Development",
@@ -40,19 +46,33 @@ export default function AboutSection() {
             <div className="w-12 h-1 bg-zinc-50" />
           </div>
 
+          {/* Stats */}
+          <div className="grid grid-cols-3 gap-6">
+            {stats.map((stat, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                transition={{ duration: 0.5, delay: 0.1 * index }}
+                className="glass rounded-lg p-5 text-center"
+              >
+                <p className="text-3xl font-bold text-zinc-50 mb-1">{stat.value}</p>
+                <p className="text-xs text-zinc-500 uppercase tracking-widest">{stat.label}</p>
+              </motion.div>
+            ))}
+          </div>
+
           {/* Bio */}
           <div className="space-y-4 text-zinc-400 text-lg leading-relaxed">
             <p>
-              I'm a software engineering student at SLIIT with a passion for building
-              elegant solutions to complex problems. My journey in tech started with
-              curiosity and has evolved into a deep commitment to crafting exceptional
-              digital experiences.
+              I'm a full stack developer based in Sri Lanka with a strong focus on
+              building real, production-ready products. I've shipped 8+ applications
+              — from AI-powered platforms to client business websites and mobile apps.
             </p>
             <p>
-              With expertise in full-stack development, I've built 8+ production-ready
-              applications using modern technologies. I focus on writing clean,
-              maintainable code and creating intuitive user interfaces that people love
-              to use.
+              I write clean, maintainable code and care deeply about the end user
+              experience. Currently studying Software Engineering at SLIIT while
+              taking on freelance projects for clients across Sri Lanka and Australia.
             </p>
           </div>
 
@@ -64,7 +84,7 @@ export default function AboutSection() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 transition={{ duration: 0.6, delay: 0.1 * (index + 1) }}
-                whileHover={{ y: -4, borderColor: "#52525b" }}
+                whileHover={{ y: -4 }}
                 className="glass p-6 rounded-lg transition-all duration-300 shine"
               >
                 <h3 className="font-semibold text-zinc-50 mb-2">{item.title}</h3>

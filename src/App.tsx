@@ -44,11 +44,16 @@ function App() {
       </div>
 
       {/* Footer */}
-      <footer className="bg-zinc-900 border-t border-zinc-800 py-8 px-6">
-        <div className="max-w-7xl mx-auto text-center">
-          <p className="text-zinc-500">
-            © {new Date().getFullYear()} Sathush Nanayakkara.
+      <footer className="border-t border-zinc-800/60 py-8 px-6">
+        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+          <p className="text-zinc-500 text-sm">
+            © {new Date().getFullYear()} Sathush Nanayakkara. Built with React & Tailwind.
           </p>
+          <div className="flex items-center gap-6">
+            <a href="https://github.com/Sathufit" target="_blank" rel="noopener noreferrer" className="text-xs text-zinc-600 hover:text-indigo-400 transition-colors">GitHub</a>
+            <a href="https://www.linkedin.com/in/sathush-nayakkara" target="_blank" rel="noopener noreferrer" className="text-xs text-zinc-600 hover:text-indigo-400 transition-colors">LinkedIn</a>
+            <a href="mailto:sathush.nanayakkara04@gmail.com" className="text-xs text-zinc-600 hover:text-indigo-400 transition-colors">Email</a>
+          </div>
         </div>
       </footer>
     </div>
