@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { Mail, MapPin, Github, Linkedin, Send, CheckCircle, XCircle } from "lucide-react";
+import { Mail, MapPin, Phone, Github, Linkedin, Send, CheckCircle, XCircle } from "lucide-react";
 
 export default function ContactSection() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -89,6 +89,25 @@ export default function ContactSection() {
                 <div>
                   <p className="text-sm text-zinc-500 mb-1">Location</p>
                   <p className="text-zinc-50">Colombo, Sri Lanka</p>
+                </div>
+              </motion.div>
+
+              <motion.div 
+                className="flex items-start gap-4"
+                whileHover={{ x: 4 }}
+                transition={{ duration: 0.2 }}
+              >
+                <div className="p-3 glass rounded-lg">
+                  <Phone className="w-5 h-5 text-zinc-50" />
+                </div>
+                <div>
+                  <p className="text-sm text-zinc-500 mb-1">Phone</p>
+                  <a
+                    href="tel:+94769346516"
+                    className="text-zinc-50 hover:opacity-60 transition-opacity"
+                  >
+                    +94 76 934 6516
+                  </a>
                 </div>
               </motion.div>
 

@@ -75,7 +75,7 @@ function FloatingShapes() {
 
 export default function Hero3D() {
   return (
-    <div className="absolute right-0 top-0 w-full md:w-1/2 h-full pointer-events-none z-0">
+    <div className="absolute right-0 top-0 w-full md:w-1/2 h-full pointer-events-none z-0 opacity-20 md:opacity-100">
       <Canvas
         camera={{ position: [0, 0, 5], fov: 50 }}
         dpr={[1, 2]}
