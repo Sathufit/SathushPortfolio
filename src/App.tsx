@@ -50,9 +50,9 @@ function App() {
             © {new Date().getFullYear()} Sathush Nanayakkara. Built with React & Tailwind.
           </p>
           <div className="flex items-center gap-6">
-            <a href="https://github.com/Sathufit" target="_blank" rel="noopener noreferrer" className="text-xs text-zinc-600 hover:text-indigo-400 transition-colors">GitHub</a>
-            <a href="https://www.linkedin.com/in/sathush-nayakkara" target="_blank" rel="noopener noreferrer" className="text-xs text-zinc-600 hover:text-indigo-400 transition-colors">LinkedIn</a>
-            <a href="mailto:sathush.nanayakkara04@gmail.com" className="text-xs text-zinc-600 hover:text-indigo-400 transition-colors">Email</a>
+            <a href="https://github.com/Sathufit" target="_blank" rel="noopener noreferrer" className="text-xs text-zinc-600 hover:text-zinc-200 transition-colors">GitHub</a>
+            <a href="https://www.linkedin.com/in/sathush-nayakkara" target="_blank" rel="noopener noreferrer" className="text-xs text-zinc-600 hover:text-zinc-200 transition-colors">LinkedIn</a>
+            <a href="mailto:sathush.nanayakkara04@gmail.com" className="text-xs text-zinc-600 hover:text-zinc-200 transition-colors">Email</a>
           </div>
         </div>
       </footer>

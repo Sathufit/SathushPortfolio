@@ -42,28 +42,32 @@ export default function AboutSection() {
         >
           {/* Header */}
           <div>
-            <h2 className="text-3xl md:text-4xl font-bold text-zinc-50 mb-4">About Me</h2>
-            <div className="w-12 h-1 bg-zinc-50" />
+            <div className="flex items-center gap-4 mb-8">
+              <span className="text-xs text-zinc-700 font-mono tracking-[0.2em]">01 /</span>
+              <div className="h-px flex-1 bg-zinc-800/60" />
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold text-zinc-50 mb-3 tracking-tight">About Me</h2>
+            <p className="text-zinc-600 text-sm">Full stack developer · Sri Lanka · SLIIT</p>
           </div>
 
           {/* Stats */}
-          <div className="grid grid-cols-3 gap-6">
+          <div className="grid grid-cols-3 border border-zinc-800/60 rounded-xl overflow-hidden">
             {stats.map((stat, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 transition={{ duration: 0.5, delay: 0.1 * index }}
-                className="glass rounded-lg p-5 text-center"
+                className={`p-6 text-center ${index < stats.length - 1 ? "border-r border-zinc-800/60" : ""}`}
               >
-                <p className="text-3xl font-bold text-zinc-50 mb-1">{stat.value}</p>
-                <p className="text-xs text-zinc-500 uppercase tracking-widest">{stat.label}</p>
+                <p className="text-4xl font-bold text-zinc-50 mb-2 tracking-tight">{stat.value}</p>
+                <p className="text-[10px] text-zinc-600 uppercase tracking-[0.2em]">{stat.label}</p>
               </motion.div>
             ))}
           </div>
 
           {/* Bio */}
-          <div className="space-y-4 text-zinc-400 text-lg leading-relaxed">
+          <div className="space-y-4 text-zinc-400 leading-relaxed border-l-2 border-zinc-800 pl-6">
             <p>
               I'm a full stack developer based in Sri Lanka with a strong focus on
               building real, production-ready products. I've shipped 8+ applications
@@ -95,7 +99,10 @@ export default function AboutSection() {
 
           {/* Skills */}
           <div>
-            <h3 className="text-xl font-semibold text-zinc-50 mb-6">Skills & Technologies</h3>
+            <div className="flex items-center gap-4 mb-6">
+              <h3 className="text-xs font-medium text-zinc-400 uppercase tracking-widest">Stack</h3>
+              <div className="h-px flex-1 bg-zinc-800/60" />
+            </div>
             <div className="flex flex-wrap gap-3">
               {skills.map((skill, index) => (
                 <motion.span

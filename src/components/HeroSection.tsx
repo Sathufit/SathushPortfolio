@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Github, Linkedin, Mail, ArrowDown } from "lucide-react";
+import { Github, Linkedin, Mail } from "lucide-react";
 import { Suspense, lazy } from "react";
 
 const Hero3D = lazy(() => import("./Hero3D"));
@@ -12,6 +12,8 @@ interface HeroSectionProps {
 export default function HeroSection({ scrollToProjects, scrollToContact }: HeroSectionProps) {
   return (
     <section id="home" className="relative min-h-screen flex items-center px-6 pt-16 overflow-hidden">
+      {/* Dot grid texture */}
+      <div className="absolute inset-0 dot-grid pointer-events-none opacity-40" />
       {/* 3D Shapes on Right Side */}
       <Suspense fallback={<div className="absolute right-0 top-0 w-full md:w-1/2 h-full" />}>
         <Hero3D />
@@ -31,10 +33,10 @@ export default function HeroSection({ scrollToProjects, scrollToContact }: HeroS
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
-            className="inline-flex items-center gap-2 px-3 py-1 glass rounded-full"
+            className="inline-flex items-center gap-2 px-4 py-1.5 border border-zinc-800 rounded-full bg-zinc-950/40 backdrop-blur-sm"
           >
-            <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-            <span className="text-xs font-medium text-zinc-200">Available for work</span>
+            <div className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse" />
+            <span className="text-xs font-medium text-zinc-500 tracking-wide">Available for work</span>
           </motion.div>
 
           {/* Main Heading */}
@@ -44,12 +46,12 @@ export default function HeroSection({ scrollToProjects, scrollToContact }: HeroS
             transition={{ delay: 0.3, duration: 0.6 }}
             className="text-5xl md:text-7xl font-bold tracking-tight leading-[1.1]"
           >
-            <span className="text-zinc-50">Hi, I'm </span>
+            <span className="text-zinc-600 text-2xl md:text-3xl font-light tracking-normal block mb-1">Hi, I'm</span>
             <span className="text-zinc-50">Sathush</span>
             <br />
             <span className="text-zinc-50">Full Stack</span>
             <br />
-            <span className="text-zinc-400">Developer</span>
+            <span className="gradient-text">Developer.</span>
           </motion.h1>
 
           {/* Description */}
@@ -117,6 +119,19 @@ export default function HeroSection({ scrollToProjects, scrollToContact }: HeroS
               <Mail size={20} />
             </a>
           </motion.div>
+
+          {/* Location + divider */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.8, duration: 0.6 }}
+            className="flex items-center gap-4 pt-2"
+          >
+            <div className="h-px w-8 bg-zinc-800" />
+            <span className="text-[11px] text-zinc-600 tracking-[0.2em] uppercase">
+              Sri Lanka — Full Stack Dev
+            </span>
+          </motion.div>
         </motion.div>
         </div>
 
@@ -124,16 +139,16 @@ export default function HeroSection({ scrollToProjects, scrollToContact }: HeroS
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1, duration: 0.6 }}
-          className="absolute bottom-12 left-32"
+          transition={{ delay: 1.2, duration: 0.6 }}
+          className="absolute bottom-8 left-6 flex flex-col items-center gap-2"
         >
+          <span className="text-[9px] text-zinc-700 uppercase tracking-[0.3em]">Scroll</span>
           <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-            className="text-zinc-600"
-          >
-            <ArrowDown size={20} />
-          </motion.div>
+            animate={{ scaleY: [0, 1, 0] }}
+            style={{ transformOrigin: "top" }}
+            transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+            className="w-px h-8 bg-gradient-to-b from-zinc-500 to-transparent"
+          />
         </motion.div>
       </div>
     </section>
