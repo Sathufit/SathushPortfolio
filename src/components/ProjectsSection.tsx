@@ -54,6 +54,13 @@ export default function ProjectsSection() {
       github: "https://github.com/Sathufit/FinanceTracker",
       image: "/placeholder/finance.png",
     },
+    {
+      title: "Flour Dude",
+      description: "Full website for Galle's most loved cafe & custom cake studio — featuring an all-day menu, custom cake studio, events, and WhatsApp ordering. 5.0 on Uber Eats with 140+ verified reviews.",
+      tech: ["Next.js", "Tailwind CSS", "Vercel"],
+      url: "https://flourdude.com/",
+      image: "/placeholder/flourdude.png",
+    },
   ];
 
   return (

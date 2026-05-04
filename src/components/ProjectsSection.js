@@ -53,6 +53,13 @@ export default function ProjectsSection() {
             github: "https://github.com/Sathufit/FinanceTracker",
             image: "/placeholder/finance.png",
         },
+        {
+            title: "Flour Dude",
+            description: "Full website for Galle's most loved cafe & custom cake studio — featuring an all-day menu, custom cake studio, events, and WhatsApp ordering. 5.0 on Uber Eats with 140+ verified reviews.",
+            tech: ["Next.js", "Tailwind CSS", "Vercel"],
+            url: "https://flourdude.com/",
+            image: "/placeholder/flourdude.png",
+        },
     ];
     return (_jsx("section", { ref: containerRef, id: "projects", className: "py-32 px-6", children: _jsx("div", { className: "max-w-6xl mx-auto", children: _jsxs(motion.div, { initial: { opacity: 0, y: 20 }, animate: isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }, transition: { duration: 0.6 }, children: [_jsxs("div", { className: "mb-16", children: [_jsx("h2", { className: "text-3xl md:text-4xl font-bold text-zinc-50 mb-4", children: "Selected Work" }), _jsx("div", { className: "w-12 h-1 bg-zinc-50" })] }), _jsx("div", { className: "grid md:grid-cols-2 gap-8", children: projects.map((project, index) => (_jsxs(motion.div, { initial: { opacity: 0, y: 20 }, animate: isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }, transition: { duration: 0.6, delay: 0.1 * index }, whileHover: { y: -4 }, className: "group glass rounded-lg overflow-hidden hover:bg-zinc-800/50 transition-all duration-300 shine", children: [_jsxs("div", { className: "relative h-64 bg-zinc-900 overflow-hidden", children: [_jsx("img", { src: project.image, alt: project.title, className: "w-full h-full object-cover transition-transform duration-500 group-hover:scale-105", onError: (e) => {
                                                 const target = e.target;
