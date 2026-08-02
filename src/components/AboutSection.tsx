@@ -11,8 +11,8 @@ export default function AboutSection() {
   ];
 
   const stats = [
-    { value: "8+", label: "Projects Shipped" },
-    { value: "3+", label: "Client Websites" },
+    { value: "15+", label: "Projects Shipped" },
+    { value: "5+", label: "Client Websites" },
     { value: "3 yrs", label: "of Coding" },
   ];
 
@@ -70,7 +70,7 @@ export default function AboutSection() {
           <div className="space-y-4 text-zinc-400 leading-relaxed border-l-2 border-zinc-800 pl-6">
             <p>
               I'm a full stack developer based in Sri Lanka with a strong focus on
-              building real, production-ready products. I've shipped 8+ applications
+              building real, production-ready products. I've shipped 15+ applications
               — from AI-powered platforms to client business websites and mobile apps.
             </p>
             <p>

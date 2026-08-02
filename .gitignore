@@ -29,3 +29,7 @@ node_modules
 dist
 build
 .vscode
+
+# Stray tsc output
+tsconfig.tsbuildinfo
+src/**/*.js
