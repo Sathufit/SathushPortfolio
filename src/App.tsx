@@ -1,63 +1,44 @@
-import { useRef } from "react";
-import Navigation from "./components/Navigation";
-import HeroSection from "./components/HeroSection";
-import AboutSection from "./components/AboutSection";
-import ProjectsSection from "./components/ProjectsSection";
-import ContactSection from "./components/ContactSection";
+import { useState } from "react";
+import { MotionConfig } from "framer-motion";
+import { useSmoothScroll } from "./lib/hooks";
+import Preloader from "./components/Preloader";
+import Cursor from "./components/Cursor";
+import Nav from "./components/Nav";
+import Hero from "./components/Hero";
+import About from "./components/About";
+import Work from "./components/Work";
+import Archive from "./components/Archive";
+import Experience from "./components/Experience";
+import Certifications from "./components/Certifications";
+import Services from "./components/Services";
+import Process from "./components/Process";
+import Marquee from "./components/Marquee";
+import Contact, { Footer } from "./components/Contact";
 
-function App() {
-  const homeRef = useRef<HTMLDivElement>(null);
-  const aboutRef = useRef<HTMLDivElement>(null);
-  const projectsRef = useRef<HTMLDivElement>(null);
-  const contactRef = useRef<HTMLDivElement>(null);
-
-  const scrollToSection = (ref: React.RefObject<HTMLDivElement | null>) => {
-    ref.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-  };
+export default function App() {
+  const [ready, setReady] = useState(false);
+  useSmoothScroll();
 
   return (
-    <div className="min-h-screen bg-zinc-950">
-      <Navigation
-        scrollToHome={() => scrollToSection(homeRef)}
-        scrollToAbout={() => scrollToSection(aboutRef)}
-        scrollToProjects={() => scrollToSection(projectsRef)}
-        scrollToContact={() => scrollToSection(contactRef)}
-      />
-
-      <div ref={homeRef}>
-        <HeroSection
-          scrollToProjects={() => scrollToSection(projectsRef)}
-          scrollToContact={() => scrollToSection(contactRef)}
-        />
+    <MotionConfig reducedMotion="user">
+      <div className="grain">
+        <Preloader onDone={() => setReady(true)} />
+        <Cursor />
+        <Nav ready={ready} />
+        <main>
+          <Hero ready={ready} />
+          <About />
+          <Work />
+          <Archive />
+          <Experience />
+          <Certifications />
+          <Services />
+          <Process />
+          <Marquee />
+          <Contact />
+        </main>
+        <Footer />
       </div>
-
-      <div ref={aboutRef}>
-        <AboutSection />
-      </div>
-
-      <div ref={projectsRef}>
-        <ProjectsSection />
-      </div>
-
-      <div ref={contactRef}>
-        <ContactSection />
-      </div>
-
-      {/* Footer */}
-      <footer className="border-t border-zinc-800/60 py-8 px-6">
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-zinc-500 text-sm">
-            © {new Date().getFullYear()} Sathush Nanayakkara. Built with React & Tailwind.
-          </p>
-          <div className="flex items-center gap-6">
-            <a href="https://github.com/Sathufit" target="_blank" rel="noopener noreferrer" className="text-xs text-zinc-600 hover:text-zinc-200 transition-colors">GitHub</a>
-            <a href="https://www.linkedin.com/in/sathush-nayakkara" target="_blank" rel="noopener noreferrer" className="text-xs text-zinc-600 hover:text-zinc-200 transition-colors">LinkedIn</a>
-            <a href="mailto:sathush.nanayakkara04@gmail.com" className="text-xs text-zinc-600 hover:text-zinc-200 transition-colors">Email</a>
-          </div>
-        </div>
-      </footer>
-    </div>
+    </MotionConfig>
   );
 }
-
-export default App;

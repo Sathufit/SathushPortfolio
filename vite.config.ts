@@ -14,14 +14,4 @@ export default defineConfig({
     },
     extensions: ['.mts', '.ts', '.tsx', '.mjs', '.js', '.jsx', '.json'],
   },
-  build: {
-    rollupOptions: {
-      output: {
-        manualChunks: {
-          'three-vendor': ['three', '@react-three/fiber', '@react-three/drei'],
-        },
-      },
-    },
-    chunkSizeWarningLimit: 1000,
-  },
 });
